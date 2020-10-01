@@ -68,5 +68,5 @@ pip3 install -r requirements.txt
 ## Mål
 - [ ] Få A.
 - [ ] Kose oss med prosjektet.
-- [ ] Bli rutta på numerikk.
+- [ ] Bli rutta i numerikk.
 - [ ] 3D-animasjon av T-nøkkelen.
