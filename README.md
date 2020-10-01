@@ -6,8 +6,8 @@
 * Håvard Stavnås Markhus
 ## Prosjektoppgave
 Se [her](prosjektoppgave.pdf) for beskrivelse av prosjektoppgava.
-## Hvordan sette opp lokalt miljø for å skrive $\LaTeX$ i Visual Studio Code
-Hopp over dette kapittelet hvis du ikke har lyst til å sette opp et lokalt miljø
+## Hvordan sette opp lokalt miljø for å skrive LaTeX i Visual Studio Code
+Hopp over dette kapittelet hvis du ikke har lyst til å sette opp et lokalt miljø.
 ```sh
 sudo add-apt-repository ppa:jonathonf/texlive
 sudo apt update
