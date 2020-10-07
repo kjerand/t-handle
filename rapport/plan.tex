@@ -1,0 +1,17 @@
+\section*{Hvordan vi har tenkt å gjøre prosjektet}
+Denne rapporten er en del av vurderingen i matematikkdelen av faget TDAT3024. I dette prosjektet kommer vi til å se på rotasjon av stive legemer, spesifikt rotasjonen til en t-nøkkel som er modellert som to sylindere loddet sammen. Vi skal lage en modell og gjøre beregnigner for å bedre forstå hvordan t-nøkkelen vil oppføre seg i denne situasjonen.\newline\newline
+Vi tenker å bruke primært Python 3 med bibliotekene NumPy and SciPy til å løse oppgavene. Dette fordi vi er mest vant til å bruke Python for numerisk utregning og føler det er lettere å kombinere Python med andre elementer vi også vil inkludere i vår løsning av prosjektet. For å løse oppgavene skal vi bruke teorien vi lærer i rotasjonsmekanikk i fysikkdelen og kombinere det med matematikkdelen. Det hadde vært interessant å sammenligne de ulike numeriske metodene og se hvilke resultater de gir. Vi tenker også å visualisere det stive legemet i 3D-grafikk.\newline\newline
+De ulike numeriske metodene vi kommer til å bruke er:
+\begin{itemize}
+    \item Eulers Metode
+    \item Midtpunkts-metoden
+    \item Trapes-metoden
+    \item RK
+    \item RKF
+\end{itemize}
+I resultatdelen vil vi sammenligne feilen i de ulike numeriske metodene, og finne ut av hvilken metode som beskriver T-nøkkelen best.\newline\newline
+Vi tenker også å bevise treghetsmomentet i nøkkelen med utgangspunkt i teorien fra fysikkdelen av faget. Her snakker vi om likningene i kapittel $7$ i prosjektbeskrivelsen.\newline\newline
+For å animere rotasjonen tenker vi å bruke PyOpenGL ettersom vi har brukt OpenGL i tidligere kurs, skrive alt i Python. I tilleg kan det bli enklere å implementere en dynamisk modell slik at vi kan justere parametere på modellen under kjøring.\newline\newline
+Ettersom det viktigste med prosjektet er at alle lærer av det, så tenker vi å jobbe sammen på hver oppgave istedenfor å dele opp arbeidet. På denne måten får alle gjennomgått hele teorien og arbeidet vi skal utføre.\newline\newline
+Siden vi er dataingeniører, så tenker vi å bruke versjonskontroll, nærmere bestemt Git. Dette er for å synkronisere arbeidet vårt. Med dette kan vi holde både rapportskriving og kode samlet og kontrollert. Vi skriver rapporten i Overleaf for å enklere få god struktur og har koblet Overleaf med Github. Dette gjør at endringer vi gjør på rapportskrivingen lett kan synkroniseres med resten av arbeidet som blir gjort. \newline\newline
+En annen ting som hadde vært interessant å se på er å modifisere tyngdeakselerasjonen for å se hvordan det påvirker rotasjonen til det stive legemet.
