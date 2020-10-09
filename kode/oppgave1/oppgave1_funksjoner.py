@@ -1,6 +1,9 @@
 #  Oppgave 1.a)
 
+import sys
+sys.path.append("..")
 import numpy as np
+from utils.utils import get_h
 
 # Konstanter for indeksering
 x = 0
@@ -101,11 +104,13 @@ def oppgaveA():
                 [0, -t["z"], t["y"]],
                 [t["z"], 0, -t["x"]],
                 [-t["y"], t["x"], 0],
-            ]
+            ],
+            dtype=np.float,
         )
 
         # kjører funksjonen vår med omega, legger resultatet i X
-        X = exp(0.000001, Omega)
+        h = get_h()
+        X = exp(h, Omega)
 
         # her er eksakt identitetsmatrise og vår tilnærming
         I_approx = np.dot(X, X.T)
