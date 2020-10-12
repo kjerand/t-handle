@@ -28,10 +28,10 @@ def euler(X_0, h, n, L, I):
 
 
 if __name__ == "__main__":
-    X_0 = np.identity(3, dtype=np.float)
+    X_0 = np.identity(3, dtype=np.double)
     h = get_h()
     n = 100
-    L = np.array([1, 0, 0], dtype=np.float)
-    I = np.identity(3, dtype=np.float)
+    L = np.array([1, 0, 0], dtype=np.double)
+    I = np.identity(3, dtype=np.double)
     W = euler(X_0, h, n, L, I)
-    print(W[n]) 
+    print(W[n])

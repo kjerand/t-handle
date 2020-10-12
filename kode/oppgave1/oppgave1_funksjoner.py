@@ -1,6 +1,7 @@
 #  Oppgave 1.a)
 
 import sys
+
 sys.path.append("..")
 import numpy as np
 from utils.utils import get_h
@@ -11,18 +12,18 @@ y = 1
 z = 2
 
 # Informasjon om håndtaket
-M_1 = 0.008 * np.pi  # kg
-L_1 = 0.08  # meter
-R_1 = 0.01  # meter
+M_1 = 8.0 * np.pi  # g
+L_1 = 8.0  # meter
+R_1 = 1.0  # meter
 
 # Informasjon om sylinderen festet på håndtaket
-M_2 = 0.004 * np.pi  # kg
-L_2 = 0.04  # meter
-R_2 = 0.01  # meter
+M_2 = 4.0 * np.pi  # kg
+L_2 = 4.0  # meter
+R_2 = 1.0  # meter
 
-M = np.array([M_1, M_2], dtype=np.float)
-R = np.array([R_1, R_2], dtype=np.float)
-L = np.array([L_1, L_2], dtype=np.float)
+M = np.array([M_1, M_2], dtype=np.double)
+R = np.array([R_1, R_2], dtype=np.double)
+L = np.array([L_1, L_2], dtype=np.double)
 
 
 def exp(h, Omega):
@@ -30,7 +31,7 @@ def exp(h, Omega):
     :param h: steglengde
     :param Omega:
     """
-    I = np.identity(3, dtype=np.float)
+    I = np.identity(3, dtype=np.double)
     omega = np.sqrt(Omega[2, 1] ** 2 + Omega[0, 2] ** 2 + Omega[1, 0] ** 2)
 
     return (
@@ -44,13 +45,13 @@ def energi(I, omega):
     L_x = I[x, x] * omega[x] - I[x, y] * omega[y] - I[x, z] * omega[z]
     L_y = -I[y, x] * omega[x] + I[y, y] * omega[y] - I[y, z] * omega[z]
     L_z = -I[z, x] * omega[x] - I[z, y] * omega[y] + I[z, z] * omega[z]
-    L = np.array([L_x, L_y, L_z], dtype=np.float)
+    L = np.array([L_x, L_y, L_z], dtype=np.double)
 
     return np.abs(np.vdot(((1 / 2) * L), omega))
 
 
 def treghetsmoment(M, R, L):
-    I = np.full((3, 3), 0, dtype=np.float)
+    I = np.full((3, 3), 0, dtype=np.double)
     I[x, x] = (M[0] * R[0] ** 2) / 4 + (M[0] * L[0] ** 2) / 12 + (M[1] * R[1] ** 2) / 2
 
     I[y, y] = (
@@ -105,7 +106,7 @@ def oppgaveA():
                 [t["z"], 0, -t["x"]],
                 [-t["y"], t["x"], 0],
             ],
-            dtype=np.float,
+            dtype=np.double,
         )
 
         # kjører funksjonen vår med omega, legger resultatet i X
@@ -131,7 +132,7 @@ def oppgaveA():
 def oppgaveB():
     print("Oppgave 1.b)")
     I = treghetsmoment(M, R, L)
-    omega = np.full((3, 1), 2, dtype=np.float)
+    omega = np.full((3, 1), 2, dtype=np.double)
     K = energi(I, omega)
     print(f"Den kinetiske rotasjonsenergien er {K} J\n")
 
