@@ -37,11 +37,11 @@ if __name__ == "__main__":
     n = 5000
     interval = [0.0, 2000.0]
 
-    #omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    #W_a, t, E = oppgave(omega_0_a, n, interval)
+    omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
+    W_a, t, E = oppgave(omega_0_a, n, interval)
 
-    #omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
-    #W_b, t, E = oppgave(omega_0_b, n, interval)
+    omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
+    W_b, t, E = oppgave(omega_0_b, n, interval)
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
     W_c, t, E = oppgave(omega_0_c, n, interval)
