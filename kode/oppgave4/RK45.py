@@ -62,13 +62,3 @@ if __name__ == "__main__":
     print(W_e[n], end="\n\n")
     print(W_r4[n], end="\n\n")
     print(W_r[n])
-
-
-"""
-sigma1 = np.dot(np.linalg.inv(I), np.dot(W[i], L))
-        sigma2 = sigma(I, W[i], L, h, A[1, 0] * big(sigma1))
-        sigma3 = sigma(I, W[i], L, h, A[2, 0] * big(sigma1) + A[2, 1] * big(sigma2))
-        sigma4 = sigma(I, W[i], L, h, A[3, 0] * big(sigma1) + A[3, 1] * big(sigma2) + A[3, 2] * big(sigma3),
-        )
-        sigma5 = sigma(I, W[i], L, h, A[4, 0] * big(sigma1))
-"""

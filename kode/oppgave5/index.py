@@ -38,4 +38,3 @@ if __name__ == "__main__":
     W_c, t, E = oppgave(omega_0_c, n, interval)
 
     print(W_a[n - 1].shape)
-    print(t.shape)
