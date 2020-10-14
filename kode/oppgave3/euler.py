@@ -7,8 +7,7 @@ from oppgave1.oppgave1_funksjoner import exp
 from utils.utils import big, get_h
 
 
-def euler(X_0, h, n, L, I):
-
+def euler(X_0, interval, n, L, I):
     """
     :param X_0: initialverdi til X.
     :param interval: intervallet til den numeriske løsningen.
@@ -17,6 +16,9 @@ def euler(X_0, h, n, L, I):
     :param I: treghetsmoment
     :return: Liste med punkter som er en tilnærming av den eksakte løsningen
     """
+
+    h=float((interval[1]- interval[0])/n)
+    t = [i * h for i in range(n + 1)]
     W = [X_0]
 
     for i in range(n):
@@ -24,14 +26,15 @@ def euler(X_0, h, n, L, I):
         Omega = big(omega)
         W.append(np.dot(W[i], exp(h, Omega)))
 
-    return W
+    return W, t, [0]
 
 
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    n = 100
+    n = 10000
+    interval = [0., 2.0]
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
-    W = euler(X_0, h, n, L, I)
+    W, t = euler(X_0, interval, n, L, I)
     print(W[n])
