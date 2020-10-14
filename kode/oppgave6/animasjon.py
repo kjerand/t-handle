@@ -7,7 +7,10 @@ import math
 
 import pickle
 from punktgenerering import load_data
+import datetime
 
+time = 0
+start_time = datetime.datetime.now()
 
 def drawCylinder(punktA, punktB, radius):
     gluCylinder()
@@ -16,7 +19,6 @@ def drawCylinder(punktA, punktB, radius):
 def cylinder_between(pointA, pointB, rad):
     v = [pointB[0] - pointA[0], pointB[1] - pointA[1], pointB[2] - pointA[2]]
     v = np.array(v, dtype=np.double)
-    print(v)
     height = math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
     axis = (
         (1, 0, 0)
@@ -26,14 +28,14 @@ def cylinder_between(pointA, pointB, rad):
     angle = -math.atan2(math.hypot(v[0], v[1]), v[2]) * 180 / math.pi
 
     glPushMatrix()
+    glColor(0.9, 0.9, 0.9)
     glTranslate(pointA[0], pointA[1], pointA[2])
     glRotate(angle, *axis)
     glutSolidCylinder(rad, height, 32, 16)
     glPopMatrix()
 
 
-def draw():
-
+def prepare():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     gluPerspective(45, wnd_w / wnd_h, 0.1, 10)
@@ -45,23 +47,63 @@ def draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     # glEnable(GL_DEPTH_TEST)
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) # causes wire frame
     glColor(1, 1, 0.5)
 
-    W, t, E = load_data("big.npy")
+    glRotatef(30.0, 0.0, 0.0, 1.0)
+    glTranslate(0.5, 2.0, 0.3)
 
+
+#x-rød
+#y-grønn
+#z-blå
+def drawAxis():
+    glPushMatrix()
+    glColor(1.0, 0.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex3f(0.0, 0.0, 0.0)
+    glVertex3f(1000.0, 0.0, 0.0)
+    glEnd()
+    glColor(0.0, 1.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex3f(0.0, 0.0, 0.0)
+    glVertex3f(0.0, 1000.0, 0.0)
+    glEnd()
+    glColor(0.0, 0.0, 1.0)
+    glBegin(GL_LINES)
+    glVertex3f(0.0, 0.0, 0.0)
+    glVertex3f(0.0, 0.0, 1000.0)
+    glVertex3f
+    glEnd()
+    glPopMatrix()
+
+
+<<<<<<< HEAD
     punktA = W[0].T[0]
     punktB = W[0].T[1]
+    punktB = W[2]
+>>>>>>> cb89b53beed485d255d8a505dfa6f56a0494f229
     cylinder_between(punktA, punktB, 0.3)
+    punktC = W[0]
+    cylinder_between(punktC, punktD, 0.3)
 
+
+def draw():
+    prepare()
+    drawAxis()
+    end_time = datetime.datetime.now()
+    time_index = (end_time - start_time).total_seconds() * 2
+    drawTHandle(W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))])
     glutSwapBuffers()
     glutPostRedisplay()
 
-
-wnd_w, wnd_h = 1000, 1000
-glutInit()
-glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
-glutInitWindowSize(wnd_w, wnd_h)
-glutInitWindowPosition(50, 50)
-glutCreateWindow("cylinder")
-glutDisplayFunc(draw)
-glutMainLoop()
+if __name__ == "__main__":
+    W, t, E = load_data("big.npy")
+    wnd_w, wnd_h = 300, 300
+    glutInit()
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
+    glutInitWindowSize(wnd_w, wnd_h)
+    glutInitWindowPosition(50, 50)
+    glutCreateWindow("cylinder")
+    glutDisplayFunc(draw)
+    glutMainLoop()
