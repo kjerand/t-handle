@@ -29,7 +29,7 @@ L = np.array([L_1, L_2], dtype=np.double)
 def exp(h, Omega):
     """
     :param h: steglengde
-    :param Omega:
+    :param Omega: TODO: skrive hva omega er AKKURAT HER!
     """
     I = np.identity(3, dtype=np.double)
     omega = np.sqrt(Omega[2, 1] ** 2 + Omega[0, 2] ** 2 + Omega[1, 0] ** 2)
@@ -42,6 +42,10 @@ def exp(h, Omega):
 
 
 def energi(I, omega):
+    """
+    :param I: treghetsmoment
+    :param omega: vinkelhastighetsvektor
+    """
     L_x = I[x, x] * omega[x] - I[x, y] * omega[y] - I[x, z] * omega[z]
     L_y = -I[y, x] * omega[x] + I[y, y] * omega[y] - I[y, z] * omega[z]
     L_z = -I[z, x] * omega[x] - I[z, y] * omega[y] + I[z, z] * omega[z]
@@ -51,6 +55,11 @@ def energi(I, omega):
 
 
 def treghetsmoment(M, R, L):
+    """
+    :param M: Massen til de to sylinderne
+    :param R: Radiusen til de to sylinderne
+    :param L: lengden til de to sylinderne
+    """
     I = np.full((3, 3), 0, dtype=np.double)
     I[x, x] = (M[0] * R[0] ** 2) / 4 + (M[0] * L[0] ** 2) / 12 + (M[1] * R[1] ** 2) / 2
 
@@ -144,6 +153,6 @@ def oppgaveC():
 
 
 if __name__ == "__main__":
-    oppgaveA()
-    oppgaveB()
+    # oppgaveA()
+    # oppgaveB()
     oppgaveC()

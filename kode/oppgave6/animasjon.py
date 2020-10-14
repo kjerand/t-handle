@@ -45,22 +45,19 @@ def draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     # glEnable(GL_DEPTH_TEST)
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)  # causes wire frame
     glColor(1, 1, 0.5)
 
     W, t, E = load_data("big.npy")
 
     punktA = W[0].T[0]
     punktB = W[0].T[1]
-    print(punktA)
-    print(punktB)
     cylinder_between(punktA, punktB, 0.3)
 
     glutSwapBuffers()
     glutPostRedisplay()
 
 
-wnd_w, wnd_h = 300, 300
+wnd_w, wnd_h = 1000, 1000
 glutInit()
 glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
 glutInitWindowSize(wnd_w, wnd_h)
