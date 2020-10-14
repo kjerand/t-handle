@@ -8,17 +8,24 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 import numpy as np
 from oppgave1.oppgave1_funksjoner import treghetsmoment, M, L, R
 from oppgave4.RK45 import RK45
+from oppgave4.RK4 import RK4
 from oppgave3.euler import euler
 from utils.utils import get_h
 
 
 def oppgave(X_0, omega_0, n, interval):
 
-    #L_vector = np.array([1.0, 0.0, 0.0])
+    # L_vector = np.array([1.0, 0.0, 0.0])
     I = treghetsmoment(M, R, L)
     L_vector = calculate_L(X_0, I, omega_0)
 
-    return euler(X_0, interval, n, L_vector, I)
+    W_rk45, t, E = RK45(X_0, interval, n, L_vector, I)
+    W_rk4, _, _ = RK4(X_0, interval, n, L_vector, I)
+    W_e, _, _ = euler(X_0, interval, n, L_vector, I)
+
+    # {"rk45": W_rk45, "rk4": W_rk4}, t, E
+
+    return {"rk45": W_rk45, "rk4": W_rk4, "euler": W_e}, t, E
 
 
 def calculate_L(X, I, omega):
@@ -66,17 +73,20 @@ def draw(W, ax):
 
 if __name__ == "__main__":
     n = 5000
-    interval = [0.0, 2000.0]
+    interval = [0.0, 10.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
     W_a, t, E = oppgave(X_0, omega_0_a, n, interval)
+    W_a = W_a["rk45"]
 
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
     W_b, t, E = oppgave(X_0, omega_0_b, n, interval)
+    W_b = W_b["rk45"]
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
     W_c, t, E = oppgave(X_0, omega_0_c, n, interval)
+    W_c = W_c["rk45"]
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")

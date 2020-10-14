@@ -17,7 +17,7 @@ def RK45(X_0, interval, n, L, I):
     E = [0]
 
     for i in range(0, n):  # O(n)
-        sigmas = [np.dot(np.linalg.inv(I), np.dot(W[i], L))]
+        sigmas = [np.dot(np.linalg.inv(I), np.dot(W[i].T, L))]
         for j in range(5):
             nextSigma = 0
             for k in range(j + 1):

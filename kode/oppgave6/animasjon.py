@@ -29,7 +29,6 @@ def cylinder_between(pointA, pointB, rad):
     angle = -math.atan2(math.hypot(v[0], v[1]), v[2]) * 180 / math.pi
 
     glPushMatrix()
-    glColor(0.9, 0.9, 0.9)
     glTranslate(pointA[0], pointA[1], pointA[2])
     glRotate(angle, *axis)
     glutSolidCylinder(rad, height, 32, 16)
@@ -52,7 +51,7 @@ def prepare():
     glColor(1, 1, 0.5)
 
     glRotatef(30.0, 0.0, 0.0, 1.0)
-    glTranslate(0.5, 2.0, 0.3)
+    glTranslate(1.0, 4.0, 0.3)
 
 
 # x-rød
@@ -93,13 +92,26 @@ def draw():
     drawAxis()
     end_time = datetime.datetime.now()
     time_index = (end_time - start_time).total_seconds() * 5
-    drawTHandle(W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))])
+    glColor(1.0, 0.0, 0.0)
+    drawTHandle(getWvalue(time_index, W_rk45))
+    glTranslate(2.0, 0.0, 0.0)
+    glColor(0.0, 1.0, 0.0)
+    drawTHandle(getWvalue(time_index, W_rk4))
+    glTranslate(2.0, 0.0, 0.0)
+    glColor(0.0, 0.0, 1.0)
+    drawTHandle(getWvalue(time_index, W_euler))
+    glTranslate(2.0, 0.0, 0.0)
     glutSwapBuffers()
     glutPostRedisplay()
 
 
+def getWvalue(time_index, W):
+    return W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))]
+
+
 if __name__ == "__main__":
-    W, t, E = load_data("big.npy")
+    oppgave = input("Oppgave nr [a, b, c]: ")
+    W_rk45, W_rk4, W_euler, t, E = load_data(f"oppgave{oppgave}.npy")
     wnd_w, wnd_h = 300, 300
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)

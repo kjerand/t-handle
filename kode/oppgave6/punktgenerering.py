@@ -10,23 +10,31 @@ import pickle
 
 
 def save_data(X_0, omega_0, n, interval, filename):
-    W_c, t, E = oppgave(X_0, omega_0, n, interval)
-    pickle.dump([W_c, t, E], open(f"data/{filename}", "wb"))
+    W, t, E = oppgave(X_0, omega_0, n, interval)
+    pickle.dump([W, t, E], open(f"data/{filename}", "wb"))
 
 
 def load_data(filename):
     data = pickle.load(open(f"data/{filename}", "rb"))
     return (
-        np.array(data[0], dtype=np.double),
+        np.array(data[0]["rk45"], dtype=np.double),
+        np.array(data[0]["rk4"], dtype=np.double),
+        np.array(data[0]["euler"], dtype=np.double),
         np.array(data[1], dtype=np.double),
         np.array(data[2], dtype=np.double),
     )
 
 
 if __name__ == "__main__":
-    n = 20000
-    interval = [0.0, 100.0]
+    n = 500000
+    interval = [0.0, 200.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    save_data(X_0, omega_0_a, n, interval, "big.npy")
+    save_data(X_0, omega_0_a, n, interval, "oppgavea.npy")
+
+    omega_0_b = np.array([[0, 1.0, 0.05]], dtype=np.double).T
+    save_data(X_0, omega_0_b, n, interval, "oppgaveb.npy")
+
+    omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
+    save_data(X_0, omega_0_c, n, interval, "oppgavec.npy")
