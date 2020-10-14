@@ -12,6 +12,7 @@ import datetime
 time = 0
 start_time = datetime.datetime.now()
 
+
 def drawCylinder(punktA, punktB, radius):
     gluCylinder()
 
@@ -47,16 +48,16 @@ def prepare():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     # glEnable(GL_DEPTH_TEST)
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) # causes wire frame
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)  # causes wire frame
     glColor(1, 1, 0.5)
 
     glRotatef(30.0, 0.0, 0.0, 1.0)
     glTranslate(0.5, 2.0, 0.3)
 
 
-#x-rød
-#y-grønn
-#z-blå
+# x-rød
+# y-grønn
+# z-blå
 def drawAxis():
     glPushMatrix()
     glColor(1.0, 0.0, 0.0)
@@ -73,18 +74,17 @@ def drawAxis():
     glBegin(GL_LINES)
     glVertex3f(0.0, 0.0, 0.0)
     glVertex3f(0.0, 0.0, 1000.0)
-    glVertex3f
     glEnd()
     glPopMatrix()
 
 
-<<<<<<< HEAD
-    punktA = W[0].T[0]
-    punktB = W[0].T[1]
+def drawTHandle(W):
+    W = W.T
+    punktA = W[1]
     punktB = W[2]
->>>>>>> cb89b53beed485d255d8a505dfa6f56a0494f229
     cylinder_between(punktA, punktB, 0.3)
     punktC = W[0]
+    punktD = (W[1] + W[2]) / 2
     cylinder_between(punktC, punktD, 0.3)
 
 
@@ -92,10 +92,11 @@ def draw():
     prepare()
     drawAxis()
     end_time = datetime.datetime.now()
-    time_index = (end_time - start_time).total_seconds() * 2
+    time_index = (end_time - start_time).total_seconds() * 5
     drawTHandle(W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))])
     glutSwapBuffers()
     glutPostRedisplay()
+
 
 if __name__ == "__main__":
     W, t, E = load_data("big.npy")
