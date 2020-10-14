@@ -24,12 +24,9 @@ def load_data(filename):
 
 
 if __name__ == "__main__":
-    n = 5000
+    n = 50000
     interval = [0.0, 2000.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    save_data(X_0, omega_0_a, n, interval, "test.npy")
-
-    W, t, E = load_data("test.npy")
-    print(W.shape)
+    save_data(X_0, omega_0_a, n, interval, "big.npy")
