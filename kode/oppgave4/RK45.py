@@ -3,6 +3,7 @@ import sys
 sys.path.append("..")
 
 import numpy as np
+from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
@@ -16,7 +17,7 @@ def RK45(X_0, interval, n, L, I):
     Z = [X_0]
     E = [0]
 
-    for i in range(0, n):  # O(n)
+    for i in tqdm(range(0, n)):  # O(n)
         sigmas = [np.dot(np.linalg.inv(I), np.dot(W[i].T, L))]
         for j in range(5):
             nextSigma = 0
