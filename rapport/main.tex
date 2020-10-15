@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{subfiles}
+\usepackage{graphicx}               
+
 \renewcommand*\contentsname{Innholdsfortegnelse}
 
 \title{Prosjektoppgave i Matematikk - TDAT3024}
@@ -13,4 +15,21 @@
 \tableofcontents
 \newpage
 \subfile{rapport/plan}
-\end{document}
+\section{Metode}
+\subfile{rapport/metode/rotasjon}
+\subfile{rapport/metode/numerikk}
+\section{Resultat}
+\subfile{rapport/resultat/oppgave1}
+\subfile{rapport/resultat/oppgave2}
+\subfile{rapport/resultat/oppgave3}
+\subfile{rapport/resultat/oppgave4}
+\subfile{rapport/resultat/oppgave5}
+\subfile{rapport/resultat/oppgave6}
+\section*{Oppgave 2}
+\subfile{rapport/oppgave2/oppgave2}
+
+\newpage
+
+\bibliography{rapport/.bib} 
+\bibliographystyle{ieeetr}
+\end{document}  
