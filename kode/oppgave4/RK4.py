@@ -3,6 +3,7 @@ import sys
 sys.path.append("..")
 
 import numpy as np
+from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
 from oppgave3.euler import euler
 from utils.utils import get_h, big
@@ -21,7 +22,7 @@ def RK4(X_0, interval, n, L, I):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
-    for i in range(n):
+    for i in tqdm(range(n)):
         sigma_1 = np.dot(np.linalg.inv(I), np.dot(W[i].T, L))
         sigma_2 = sigma_i(big(sigma_1), h, I, W[i], L)
         sigma_3 = sigma_i(big(sigma_2), h, I, W[i], L)

@@ -5,6 +5,7 @@ sys.path.append("..")
 import numpy as np
 from oppgave1.oppgave1_funksjoner import exp
 from utils.utils import big, get_h
+from tqdm import tqdm
 
 
 def euler(X_0, interval, n, L, I):
@@ -21,7 +22,7 @@ def euler(X_0, interval, n, L, I):
     t = [i * h for i in range(n + 1)]
     W = [X_0]
 
-    for i in range(n):
+    for i in tqdm(range(n)):
         omega = np.dot(np.linalg.inv(I), np.dot(W[i].T, L))
         Omega = big(omega)
         W.append(np.dot(W[i], exp(h, Omega)))
