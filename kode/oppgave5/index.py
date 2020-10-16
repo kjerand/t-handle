@@ -23,13 +23,16 @@ def oppgave(X_0, omega_0, n, interval):
     W_rk4, _, _ = RK4(X_0, interval, n, L_vector, I)
     W_e, _, _ = euler(X_0, interval, n, L_vector, I)
 
-    # {"rk45": W_rk45, "rk4": W_rk4}, t, E
+    print(
+        "Lengde: ",
+        np.linalg.norm(np.dot(np.linalg.inv(np.dot(X_0, I)), L_vector)),
+    )
 
     return {"rk45": W_rk45, "rk4": W_rk4, "euler": W_e}, t, E
 
 
 def calculate_L(X, I, omega):
-    return np.dot(X, np.dot(I, omega))
+    return np.dot(np.dot(X, I), omega)
 
 
 def draw(W, ax):
@@ -103,10 +106,10 @@ if __name__ == "__main__":
 
     sTime.on_changed(
         lambda val: draw(
-            W_c[int(((val / (interval[1] - interval[0])) * n) - interval[0])], ax
+            W_b[int(((val / (interval[1] - interval[0])) * n) - interval[0])], ax
         )
     )
 
-    ax.scatter([i[0] for i in W_c[0]], [i[1] for i in W_c[0]], [i[2] for i in W_c[0]])
+    ax.scatter([i[0] for i in W_b[0]], [i[1] for i in W_b[0]], [i[2] for i in W_b[0]])
 
     plt.show()

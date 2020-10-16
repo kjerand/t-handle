@@ -32,7 +32,7 @@ def exp(h, Omega):
     :param Omega: TODO: skrive hva omega er AKKURAT HER!
     """
     I = np.identity(3, dtype=np.double)
-    omega = np.sqrt(Omega[2, 1] ** 2 + Omega[0, 2] ** 2 + Omega[1, 0] ** 2)
+    omega = np.sqrt(Omega[2, 1] ** 2 + Omega[0, 2] ** 2 + Omega[1, 0] ** 1)
 
     return (
         I
@@ -153,6 +153,6 @@ def oppgaveC():
 
 
 if __name__ == "__main__":
-    # oppgaveA()
-    # oppgaveB()
+    oppgaveA()
+    oppgaveB()
     oppgaveC()

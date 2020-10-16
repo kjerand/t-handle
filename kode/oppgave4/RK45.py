@@ -3,6 +3,7 @@ import sys
 sys.path.append("..")
 
 import numpy as np
+from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
