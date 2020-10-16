@@ -91,7 +91,7 @@ def draw():
     prepare()
     drawAxis()
     end_time = datetime.datetime.now()
-    time_index = (end_time - start_time).total_seconds() * 10
+    time_index = (end_time - start_time).total_seconds() * 5
     glColor(1.0, 0.0, 0.0)
     drawTHandle(getWvalue(time_index, W_rk45))
     glTranslate(2.0, 0.0, 0.0)
@@ -112,7 +112,7 @@ def getWvalue(time_index, W):
 if __name__ == "__main__":
     oppgave = input("Oppgave nr [a, b, c]: ")
     W_rk45, W_rk4, W_euler, t, E = load_data(f"test{oppgave}.npy")
-    wnd_w, wnd_h = 300, 300
+    wnd_w, wnd_h = 1920, 1080
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
     glutInitWindowSize(wnd_w, wnd_h)
