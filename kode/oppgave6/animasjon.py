@@ -50,8 +50,10 @@ def prepare():
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)  # causes wire frame
     glColor(1, 1, 0.5)
 
-    glRotatef(30.0, 0.0, 0.0, 1.0)
-    glTranslate(1.0, 4.0, 0.3)
+    #glRotatef(-30.0, 0.0, 0.0, 1.0)
+    glRotatef(30.0, 1.0, 0.0, 0.0)
+    glTranslatef(-2.0, 6.0, -3.0)
+    glRotatef(-30.0, 0.0, 0.0, 1.0)
 
 
 # x-rød
@@ -79,19 +81,17 @@ def drawAxis():
 
 def drawTHandle(W):
     W = W.T
-    punktA = W[1]
-    punktB = W[2]
-    cylinder_between(punktA, punktB, 0.3)
-    punktC = W[0]
-    punktD = (W[1] + W[2]) / 2
-    cylinder_between(punktC, punktD, 0.3)
+    punktA = W[0]
+    punktB = W[1]
+    cylinder_between(punktA*0.3, punktA + (punktA*0.3), 0.3)
+    cylinder_between(-punktB, punktB, 0.3)
 
 
 def draw():
     prepare()
     drawAxis()
     end_time = datetime.datetime.now()
-    time_index = (end_time - start_time).total_seconds() * 5
+    time_index = (end_time - start_time).total_seconds() * 10
     glColor(1.0, 0.0, 0.0)
     drawTHandle(getWvalue(time_index, W_rk45))
     glTranslate(2.0, 0.0, 0.0)
