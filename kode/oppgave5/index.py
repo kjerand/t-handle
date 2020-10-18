@@ -19,7 +19,7 @@ def oppgave(X_0, omega_0, n, interval):
     I = treghetsmoment(M, R, L)
     L_vector = calculate_L(X_0, I, omega_0)
 
-    W_rk45, t, E = RK45(X_0, interval, n, L_vector, I)
+    W_rk45, t, E = RK45(X_0, interval, n, L_vector, I, omega_0)
     W_rk4, _, _ = RK4(X_0, interval, n, L_vector, I)
     W_e, _, _ = euler(X_0, interval, n, L_vector, I)
 

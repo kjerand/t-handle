@@ -41,18 +41,20 @@ def exp(h, Omega):
     )
 
 
-def energi(I, omega):
+def energi(X, I, omega):
     """
+    :param X: rotasjon
     :param I: treghetsmoment
     :param omega: vinkelhastighetsvektor
     """
-    L_x = I[x, x] * omega[x] - I[x, y] * omega[y] - I[x, z] * omega[z]
-    L_y = -I[y, x] * omega[x] + I[y, y] * omega[y] - I[y, z] * omega[z]
-    L_z = -I[z, x] * omega[x] - I[z, y] * omega[y] + I[z, z] * omega[z]
-    L = np.array([L_x, L_y, L_z], dtype=np.double)
+
+    L = calculate_L(X, I, omega)
 
     return np.abs(np.vdot(((1 / 2) * L), omega))
 
+
+def calculate_L(X, I, omega):
+    return np.dot(np.dot(X, I), omega)
 
 def treghetsmoment(M, R, L):
     """
@@ -142,7 +144,7 @@ def oppgaveB():
     print("Oppgave 1.b)")
     I = treghetsmoment(M, R, L)
     omega = np.full((3, 1), 2, dtype=np.double)
-    K = energi(I, omega)
+    K = energi(np.identity(3, dtype=np.double), I, omega)
     print(f"Den kinetiske rotasjonsenergien er {K} J\n")
 
 
