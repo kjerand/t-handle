@@ -6,6 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
 from utils.utils import big, get_h
+from tqdm import tqdm
 
 
 def euler(X_0, interval, n, L, I):

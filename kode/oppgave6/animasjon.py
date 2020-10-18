@@ -50,8 +50,10 @@ def prepare():
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)  # causes wire frame
     glColor(1, 1, 0.5)
 
-    glRotatef(30.0, 0.0, 0.0, 1.0)
-    glTranslate(1.0, 4.0, 0.3)
+    #glRotatef(-30.0, 0.0, 0.0, 1.0)
+    glRotatef(30.0, 1.0, 0.0, 0.0)
+    glTranslatef(-2.0, 6.0, -3.0)
+    glRotatef(-30.0, 0.0, 0.0, 1.0)
 
 
 # x-rød
@@ -79,12 +81,10 @@ def drawAxis():
 
 def drawTHandle(W):
     W = W.T
-    punktA = W[1]
-    punktB = W[2]
-    cylinder_between(punktA, punktB, 0.3)
-    punktC = W[0]
-    punktD = (W[1] + W[2]) / 2
-    cylinder_between(punktC, punktD, 0.3)
+    punktA = W[0]
+    punktB = W[1]
+    cylinder_between(punktA*0.3, punktA + (punktA*0.3), 0.3)
+    cylinder_between(-punktB, punktB, 0.3)
 
 
 def draw():
@@ -111,8 +111,13 @@ def getWvalue(time_index, W):
 
 if __name__ == "__main__":
     oppgave = input("Oppgave nr [a, b, c]: ")
+<<<<<<< HEAD
     W_rk45, W_rk4, W_euler, t, E = load_data(f"oppgave{oppgave}.npy")
     wnd_w, wnd_h = 300, 300
+=======
+    W_rk45, W_rk4, W_euler, t, E = load_data(f"test{oppgave}.npy")
+    wnd_w, wnd_h = 1920, 1080
+>>>>>>> fb6cdeba61bf355597676601bf31a425337c2eef
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
     glutInitWindowSize(wnd_w, wnd_h)

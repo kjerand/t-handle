@@ -8,6 +8,7 @@ from oppgave1.oppgave1_funksjoner import exp
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
 from utils.utils import get_h, big, A, B, c
+from tqdm import tqdm
 
 
 def RK45(X_0, interval, n, L, I):

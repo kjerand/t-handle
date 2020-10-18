@@ -2,7 +2,7 @@
 
 \subsection{Eulers metode}
 Eulers metode er en metode for å løse differensiallikninger, oppfunnet av Leonhard Euler. \newline
-\includegraphics{rapport/metode/bilder/eulers.png}\newline\newline
+\includegraphics{rapport/teori/bilder/eulers.png}\newline\newline
 Metoden innebærer å velge en startverdi for en kurve, for å så bevege seg en kort distanse langs denne. Så vil man re-evaluere kurven i det nye punktet og bevege seg en kort distanse langs denne. Slik fortsetter man til man får en tilnærmet løsning.\newline\newline
 Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode.
 \begin{equation}
@@ -23,7 +23,7 @@ Her angis startverdien $W_0=X_0$ som startposisjonen til det stive legeme, mens 
 
 \subsection{Midtpunkts-metoden}
 \begin{center}
-    \includegraphics{rapport/metode/bilder/midpoint.PNG}
+    \includegraphics{rapport/teori/bilder/midpoint.PNG}
 \end{center}
 Midtpunkts-metoden tar utgangspunkt i Eulers metode. Forskjellen er at i midtpunkts-metoden finner man først midtpunktet mellom stegene, så beregner man tangenten til neste steg basert på midtpunktet.\newline\newline
 Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode.
@@ -45,7 +45,7 @@ Her ønsker vi også at $w_i$ skal være ortogonal, så vi tar utgangspunkt i de
 
 \subsection{Trapes-metoden}
 \begin{center}
-    \includegraphics{rapport/metode/bilder/trapezoid.PNG}
+    \includegraphics{rapport/teori/bilder/trapezoid.PNG}
 \end{center}
 Trapes-metoden tar også utgangspunkt i Eulers metode. Forskjellen her er at man regner ut tangenten i $w_i$, samt i $w_{i+1}$. Ved Trapes-metoden bruker vi da gjennomsnittet av disse tangentene. Dette illustreres i figuren overfor.\newline\newline
 Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode.
