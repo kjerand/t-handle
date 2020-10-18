@@ -4,14 +4,14 @@ sys.path.append("..")
 
 import numpy as np
 from tqdm import tqdm
-from oppgave1.oppgave1_funksjoner import exp
+from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
-from utils.utils import get_h, big, A, B, c
+from utils.utils import get_h, big, A, B, c, max_energy_difference
 from tqdm import tqdm
 
 
-def RK45(X_0, interval, n, L, I):
+def RK45(X_0, interval, n, L, I, omega):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
@@ -32,6 +32,13 @@ def RK45(X_0, interval, n, L, I):
                 exp(h, sum(B[0, i] * big(sigmas[i]) for i in range(6))),
             ),
         )
+        """
+        if np.abs(energi(W[-1], I, omega)-energi(W[0], I, omega)) > max_energy_difference :
+            print(energi(W[-1], I, omega))
+            print(energi(W[0], I, omega))
+            print("\n")
+            return RK45(X_0, interval, n*2, L, I, omega)
+        """
 
         Z.append(
             np.dot(
