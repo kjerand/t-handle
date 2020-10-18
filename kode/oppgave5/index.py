@@ -6,7 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 import numpy as np
-from oppgave1.oppgave1_funksjoner import treghetsmoment, M, L, R
+from oppgave1.oppgave1_funksjoner import treghetsmoment, M, L, R, energi
 from oppgave4.RK45 import RK45
 from oppgave4.RK4 import RK4
 from oppgave3.euler import euler
