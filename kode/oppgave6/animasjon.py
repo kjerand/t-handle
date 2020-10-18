@@ -111,7 +111,7 @@ def getWvalue(time_index, W):
 
 if __name__ == "__main__":
     oppgave = input("Oppgave nr [a, b, c]: ")
-    W_rk45, W_rk4, W_euler, t, E = load_data(f"testcd c{oppgave}.npy")
+    W_rk45, W_rk4, W_euler, t, E = load_data(f"oppgave{oppgave}.npy")
     wnd_w, wnd_h = 300, 300
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
