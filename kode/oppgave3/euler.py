@@ -5,6 +5,7 @@ sys.path.append("..")
 import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
+from oppgave2.oppgave2 import exactSolution
 from utils.utils import big, get_h
 from tqdm import tqdm
 
@@ -39,4 +40,9 @@ if __name__ == "__main__":
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W, t, _ = euler(X_0, interval, n, L, I)
-    print(W[n])
+    print("Løsning med eulers metode:")
+    print(W[n], end="\n\n")
+
+    exact_sol = exactSolution(t)
+    print("Eksakt løsning:")
+    print(exact_sol[-1])

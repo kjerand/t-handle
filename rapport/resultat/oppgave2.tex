@@ -1,2 +1,85 @@
 \subsection{Oppgave 2}
-hei fra oppgave 2
+Skal løse følgende likninger eksakt for $X=[x_{ij}]:$
+\begin{equation}
+    \vec{\omega_b}=(XI)^{-1}\vec{L}
+\end{equation}
+\begin{equation}
+    \frac{dX}{dt}=F(X)=X\Omega
+\end{equation}
+Her har vi at det stive legemet er en kule. Vi antar at treghetsmomentet er lik identitetsmatrisen, dvs. at $I=Id_{3\times3}.$ Startbetingelsen til $X(t)$ er også lik identitetsmatrisen, så $X(0)=Id_{3\times3},$ og $X$ er en ortogonal matrise. Lar $\vec{L}=\begin{bmatrix}1&0&0\end{bmatrix}.$\newline\newline
+Med denne informasjonen kan vi finne $\vec{\omega_b}(0)$ ved å løse likning $(28)$ for $\vec{\omega_b}(0):$
+\begin{equation}
+    \vec{\omega_b}(0)=(X(0)I)^{-1}\vec{L}
+\end{equation}
+Siden $X(0)=I=Id_{3\times3},$ så ender vi opp med at
+\begin{equation}
+    \vec{\omega_b}(0)=\vec{L}=\begin{bmatrix}1&0&0\end{bmatrix}
+\end{equation}
+Siden
+\begin{equation}
+    \Omega=\begin{bmatrix}0&-\omega_z&\omega_y\\\omega_z&0&-\omega_x\\-\omega_y&\omega_x&0\end{bmatrix}
+\end{equation}
+så ender vi opp med at 
+\begin{equation}
+    \Omega=\begin{bmatrix}0&0&0\\0&0&-1\\0&1&0\end{bmatrix}
+\end{equation}
+For å kunne løse oppgaven videre, så antar vi at det ikke er noen ytre krefter som virker på den roterende kulen. Dette impliserer at
+\begin{equation}
+    \vec{\omega_b}=\vec{\omega_b}(t)=\begin{bmatrix}1&0&0\end{bmatrix},\quad\forall t\geq0
+\end{equation}
+Siden $\Omega$ avhenger av komponentene til $\vec{\omega_b}$, så vil den også være konstant $\forall t\geq 0.$ \newline\newline
+Bruker likning $(23)$ for å finne komponentene $x_{ij}$ til $X,$ som er $9$ koblede differensiallikninger.
+\begin{equation}
+\begin{aligned}
+    \frac{d}{dt}\begin{bmatrix}x_{11}&x_{12}&x_{13}\\x_{21}&x_{22}&x_{23}\\x_{31}&x_{32}&x_{33}\end{bmatrix}&=\begin{bmatrix}x_{11}&x_{12}&x_{13}\\x_{21}&x_{22}&x_{23}\\x_{31}&x_{32}&x_{33}\end{bmatrix}\begin{bmatrix}0&0&0\\0&0&-1\\0&1&0\end{bmatrix}\\
+    &=\begin{bmatrix}0&x_{13}&-x_{12}\\0&x_{23}&-x_{22}\\0&x_{33}&-x_{32}\end{bmatrix}
+\end{aligned}
+\end{equation}
+Vi kan starte med å løse differensiallikningene $x_{11}, x_{21}$ og $x_{31}:$
+\begin{equation}
+    \frac{d}{dt}x_{11}=0\implies x_{11}=\int{0}=A
+\end{equation}
+\begin{equation}
+    \frac{d}{dt}x_{21}=0\implies x_{21}=\int{0}=B
+\end{equation}
+\begin{equation}
+    \frac{d}{dt}x_{31}=0\implies x_{31}=\int{0}=C
+\end{equation}
+hvor $A, B, C\in\mathbb{R}.$ Bruker initialbetingelsen $X(0)=Id_{3\times3}$ til å finne $A, B, C$. Dette gjøres ved å sette $x_{ij}(0)$ lik det tilsvarende elementet i identitetsmatrisen.
+\begin{equation}
+    x_{11}(0)=1\implies A=1\implies x_{11}(t)=1
+\end{equation}
+\begin{equation}
+    x_{21}(0)=0\implies B=0\implies x_{21}(t)=0
+\end{equation}
+\begin{equation}
+    x_{31}(0)=0\implies C=0\implies x_{31}(t)=0
+\end{equation}
+Nå har vi løst $3$ av $9$ differensiallikninger. Vi også bevist at søylevektoren $\hat{i_b}$ er stasjonær (se likning $(16)$ i prosjektbeskrivelsen). Vi får at
+\begin{equation}
+\hat{i_b}=\begin{bmatrix}1&0&0\end{bmatrix}^T
+\end{equation}
+Nå gjenstår det å finne ut av hva $\hat{j_b}$ og $\hat{k_b}$ er. Foreløpig så har vi at
+\begin{equation}
+    X=\begin{bmatrix}1&x_{12}&x_{13}\\0&x_{22}&x_{23}\\0&x_{32}&x_{33}\end{bmatrix}
+\end{equation}
+Vi har at $X$ er en ortogonal matrise, så
+\begin{equation}
+    X^TX=\begin{bmatrix}1&0&0\\x_{12}&x_{22}&x_{32}\\x_{13}&x_{23}&x_{33}\end{bmatrix}\begin{bmatrix}1&x_{12}&x_{13}\\0&x_{22}&x_{23}\\0&x_{32}&x_{33}\end{bmatrix}=Id_{3\times3}
+\end{equation}
+Likningen ovenfor gir oss at
+\begin{equation}
+    x_{22}^2+x_{23}^2=1
+\end{equation}
+\begin{equation}
+    x_{32}^2+x_{33}^2=1
+\end{equation}
+Søylevektorene som er omtalt i likning $(16)$ i prosjektoppgavene representerer de lokale aksene til det stive legemet. Likningene $(45)$ og $(46)$ viser oss at de $2$ siste søylevektorene er i sirkelbevegelse, og likning $(42)$ forteller oss at den første søylevektoren vil stå i ro $\forall t\geq0.$ I tillegg så har vi fra likning $(34)$ at kulen kommer til å rotere rundt $x$-aksen med konstant vinkelhastighet\newline\newline
+Fra lineær algebra så har vi at rotasjonsmatrisen for bevegelse rundt $x$-aksen er gitt ved
+\begin{equation}
+    R_x=\begin{bmatrix}1&0&0\\0&\cos\theta&-\sin\theta\\0&\sin\theta&\cos\theta\end{bmatrix}
+\end{equation}
+hvor $\theta$ er vinkelen mellom $x$-aksen og de to siste søylevektorene. Fra rotasjonell kinematikk (likning $(1)$) så har vi at $\frac{d\theta}{dt}=\omega_x\implies\theta=\omega_xt.$ Siden $\omega_x=1$ fra likning $(34),$ så har vi at $\theta=t.$ Dette gir oss at 
+\begin{equation}
+    X(t)=\begin{bmatrix}1&0&0\\0&\cos t&-\sin t\\0&\sin t&\cos t\end{bmatrix}
+\end{equation}

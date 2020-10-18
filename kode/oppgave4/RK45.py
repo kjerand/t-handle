@@ -65,9 +65,4 @@ if __name__ == "__main__":
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W_r, t, E = RK45(X_0, [0.0, 10.0], n, L, I)
-    W_e = euler(X_0, h, n, L, I)
-    W_r4 = RK4(X_0, h, n, L, I)
-
-    print(W_e[n], end="\n\n")
-    print(W_r4[n], end="\n\n")
     print(W_r[n])

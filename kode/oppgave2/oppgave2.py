@@ -20,17 +20,3 @@ def exactSolution(t):
         )
         for t_i in t
     ]
-
-
-if __name__ == "__main__":
-    X_0 = np.identity(3, dtype=np.double)
-    I = np.identity(3, dtype=np.double)
-    omega_0 = np.array([1, 0, 0], dtype=np.double)
-    L = np.array([1, 0, 0], dtype=np.double)
-
-    W, t, E = RK45(X_0, [0.0, 20.0], 40000, L, I)
-
-    exact_W = exactSolution(t)
-
-    print(exact_W[-1])
-    print(W[-1])

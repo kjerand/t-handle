@@ -50,7 +50,7 @@ def prepare():
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)  # causes wire frame
     glColor(1, 1, 0.5)
 
-    #glRotatef(-30.0, 0.0, 0.0, 1.0)
+    # glRotatef(-30.0, 0.0, 0.0, 1.0)
     glRotatef(30.0, 1.0, 0.0, 0.0)
     glTranslatef(-2.0, 6.0, -3.0)
     glRotatef(-30.0, 0.0, 0.0, 1.0)
@@ -83,7 +83,7 @@ def drawTHandle(W):
     W = W.T
     punktA = W[0]
     punktB = W[1]
-    cylinder_between(punktA*0.3, punktA + (punktA*0.3), 0.3)
+    cylinder_between(punktA * 0.3, punktA + (punktA * 0.3), 0.3)
     cylinder_between(-punktB, punktB, 0.3)
 
 
