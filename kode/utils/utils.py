@@ -15,7 +15,8 @@ def big(vector):
         dtype=np.float,
     )
 
-max_energy_difference = 0.1
+
+max_energy_difference = 2
 
 A = np.array(
     [

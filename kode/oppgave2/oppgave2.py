@@ -2,8 +2,6 @@ import sys
 
 sys.path.append("..")
 
-from oppgave4.RK45 import RK45
-
 import numpy as np
 
 """

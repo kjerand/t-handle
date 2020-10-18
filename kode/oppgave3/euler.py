@@ -4,13 +4,13 @@ sys.path.append("..")
 
 import numpy as np
 from tqdm import tqdm
-from oppgave1.oppgave1_funksjoner import exp
+from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave2.oppgave2 import exactSolution
-from utils.utils import big, get_h
+from utils.utils import big, get_h, max_energy_difference
 from tqdm import tqdm
 
 
-def euler(X_0, interval, n, L, I):
+def euler(X_0, interval, n, L, I, initial_energy=0):
     """
     :param X_0: initialverdi til X.
     :param interval: intervallet til den numeriske løsningen.
@@ -23,13 +23,30 @@ def euler(X_0, interval, n, L, I):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
+    energy = [
+        initial_energy
+        if initial_energy != 0
+        else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
+    ]
 
     for i in tqdm(range(n)):
         omega = np.dot(np.linalg.inv(I), np.dot(W[i].T, L))
         Omega = big(omega)
         W.append(np.dot(W[i], exp(h, Omega)))
 
-    return W, t, [0]
+        new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
+        new_energy = energi(W[-1], I, new_omega)
+
+        energy.append(new_energy)
+
+        if initial_energy == 0:
+            continue
+
+        if np.abs(new_energy - initial_energy) > max_energy_difference:
+            print("\n")
+            return euler(X_0, interval, n * 2, L, I, initial_energy)
+
+    return W, t, energy, [0]
 
 
 if __name__ == "__main__":

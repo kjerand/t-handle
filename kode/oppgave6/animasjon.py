@@ -93,25 +93,25 @@ def draw():
     end_time = datetime.datetime.now()
     time_index = (end_time - start_time).total_seconds() * 5
     glColor(1.0, 0.0, 0.0)
-    drawTHandle(getWvalue(time_index, W_rk45))
+    drawTHandle(getWvalue(time_index, W_rk45, t_rk45))
     glTranslate(2.0, 0.0, 0.0)
     glColor(0.0, 1.0, 0.0)
-    drawTHandle(getWvalue(time_index, W_rk4))
+    drawTHandle(getWvalue(time_index, W_rk4, t_rk4))
     glTranslate(2.0, 0.0, 0.0)
     glColor(0.0, 0.0, 1.0)
-    drawTHandle(getWvalue(time_index, W_euler))
+    drawTHandle(getWvalue(time_index, W_euler, t_euler))
     glTranslate(2.0, 0.0, 0.0)
     glutSwapBuffers()
     glutPostRedisplay()
 
 
-def getWvalue(time_index, W):
+def getWvalue(time_index, W, t):
     return W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))]
 
 
 if __name__ == "__main__":
     oppgave = input("Oppgave nr [a, b, c]: ")
-    W_rk45, W_rk4, W_euler, t, E = load_data(f"test{oppgave}.npy")
+    W_rk45, W_rk4, W_euler, t_rk45, t_rk4, t_euler, E = load_data(f"test{oppgave}.npy")
     wnd_w, wnd_h = 1920, 1080
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)

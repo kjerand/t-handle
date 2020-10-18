@@ -11,12 +11,17 @@ from utils.utils import get_h, big, A, B, c, max_energy_difference
 from tqdm import tqdm
 
 
-def RK45(X_0, interval, n, L, I, omega):
+def RK45(X_0, interval, n, L, I, initial_energy):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
     Z = [X_0]
     E = [0]
+    energy = [
+        initial_energy
+        if initial_energy != 0
+        else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
+    ]
 
     for i in tqdm(range(0, n)):  # O(n)
         sigmas = [np.dot(np.linalg.inv(I), np.dot(W[i].T, L))]
@@ -32,14 +37,6 @@ def RK45(X_0, interval, n, L, I, omega):
                 exp(h, sum(B[0, i] * big(sigmas[i]) for i in range(6))),
             ),
         )
-        """
-        if np.abs(energi(W[-1], I, omega)-energi(W[0], I, omega)) > max_energy_difference :
-            print(energi(W[-1], I, omega))
-            print(energi(W[0], I, omega))
-            print("\n")
-            return RK45(X_0, interval, n*2, L, I, omega)
-        """
-
         Z.append(
             np.dot(
                 W[i],
@@ -50,7 +47,17 @@ def RK45(X_0, interval, n, L, I, omega):
         deltaW = W[i + 1] - Z[i + 1]
         E.append(np.sqrt(np.trace(np.dot(deltaW.T, deltaW))))
 
-    return W, t, E
+        new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
+        new_energy = energi(W[-1], I, new_omega)
+        energy.append(new_energy)
+
+        if initial_energy == 0:
+            continue
+
+        if np.abs(new_energy - initial_energy) > max_energy_difference:
+            return RK45(X_0, interval, n * 2, L, I, initial_energy)
+
+    return W, t, energy, E
 
 
 def sigma(I, W, L, h, exp_inp):
