@@ -4,8 +4,9 @@
 
 \subsubsection{Rotasjonell kinematikk}
 Når et stivt legeme roteres rundt en stasjonær akse (vanligvis $z$-aksen), så er posisjonen til det stive legemet beskrevet av vinkelen $\theta.$\newline\newline
-
+\begin{center}
 \includegraphics{rapport/teori/bilder/theta.png}\newline\newline
+\end{center}
 Her ser vi et eksempel på et stivt legeme som roterer rundt en stasjonær akse \cite{FYSIKK:1}. Som vi kan se er legemets posisjon beskrevet av $\theta.$\newline\newline
 Vinkelfarten $\omega_z$ er den tidsderiverte av $\theta$, og vinkelakselerasjonen $\alpha_z$ er den tidsderiverte av $\omega_z$, eller den andrederiverte av $\theta.$
 \begin{equation}
@@ -44,7 +45,9 @@ For både lineær kinematikk og rotasjonell kinematikk gjelder følgende:\newlin
 \begin{equation}
     a_{\text{rad}}=\frac{v^2}{r}=\omega^2r
 \end{equation}
+\begin{center}
 \includegraphics{rapport/teori/bilder/tang.png}\newline
+\end{center}
 Her er $a_\text{rad}$ og $a_\text{rad}$ henholdsvis den radielle komponenten og den tangentielle komponenten til akseleasjonsvektoren \cite{FYSIKK:1}
 
 \subsubsection{Treghetsmoment og rotasjonell kinetisk energi}
@@ -52,4 +55,30 @@ Treghetsmomentet $I$ til et legeme om en gitt akse er et mål på legemets rotas
 \begin{equation}
     I=m_1r_1^2+m_2r_2^2+\dots=\sum_i{m_i_r_i^2}
 \end{equation}
-Den rotasjonelle 
+Den rotasjonelle kinetiske energien til et stivt legeme som roterer om en akse avhenger av vinkelhastigheten $\omega$ og treghetsmomentet $I$ for rotasjonsaksen
+\begin{equation}
+    K=\frac{1}{2}I\omega^2
+\end{equation}
+\subsubsection{Beregning av treghetsmoment}
+Parallell akse teoremet beskriver forholdet mellom treghetsmomentet til et stivt legeme med masse $M$ om to parallelle akser. Den ene aksen er aksen gjennom massesenteret, og den andre aksen er aksen en distanse $d$ fra den første aksen
+\includegraphics{rapport/teori/bilder/parallell.png}\newline
+Her ser vi et stivt legeme med masse $M$, hvor den ene aksen går gjennom massesenteret. Her er treghetsmomentet $I_\text{cm}$. Den andre aksen ligger en distanse $d$ fra første akse, og her er treghetsmomentet $I_p.$\cite{FYSIKK:1} Parallell akse teoremet gir oss at
+\begin{equation}
+    I_p=I_\text{cm}+Md^2
+\end{equation}
+Hvis det stive legemet har en kontinuerlig distribusjon av masse, så kan treghetsmomentet regnes ut med integrasjon. Dette kommer fra likning $(10)$, der treghetsmomentet er en sum over massen til alle partiklene i det stive legemet. Da har vi at
+\begin{equation}
+    I=\int{r^2\,dm}
+\end{equation}
+Hvis det stive legemet er endimensjonal, så kan vi sette $x$-aksen langs lengden, og beskrive $dm$ som et inkrement $dx.$ For en tredimensjonal legeme er det enklere å beskrive $dm$ med volumnet $dV$ og massetettheten $\rho$ til det stive legemet. Vi har at
+\begin{equation}
+    \rho=\frac{dm}{dV}
+\end{equation}
+Dette gir oss
+\begin{equation}
+    I=\int{r^2\rho\,dV}
+\end{equation}
+Likningen ovenfor forteller oss at treghetsmomentet avhenger av hvordan massetettheten varierer i volumnet til det stive legemet. Hvis legemet har uniform massetetthet, så kan vi skrive om likning $(15)$
+\begin{equation}
+    I=\rho\int{r^2\,dV}
+\end{equation}
