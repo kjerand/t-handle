@@ -5,7 +5,6 @@ sys.path.append("..")
 import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp
-from oppgave3.euler import euler
 from utils.utils import get_h, big
 
 
@@ -51,5 +50,3 @@ if __name__ == "__main__":
     I = np.identity(3, dtype=np.float)
     interval = [0.0, 10.0]
     W_r = RK4(X_0, interval, n, L, I)
-    W_e = euler(X_0, h, n, L, I)
-    print(abs(W_r[n] - W_e[n]))
