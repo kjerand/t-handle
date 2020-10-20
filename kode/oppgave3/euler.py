@@ -56,7 +56,7 @@ if __name__ == "__main__":
     interval = [0.0, 2.0]
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
-    W, t, _ = euler(X_0, interval, n, L, I)
+    W, t, _, _ = euler(X_0, interval, n, L, I)
     print("Løsning med eulers metode:")
     print(W[n], end="\n\n")
 
