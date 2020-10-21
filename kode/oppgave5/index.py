@@ -38,7 +38,7 @@ def calculate_L(X, I, omega):
 
 
 if __name__ == "__main__":
-    n = 500
+    n = 50000
     interval = [0.0, 50.0]
     X_0 = np.identity(3, dtype=np.double)
 
@@ -50,8 +50,6 @@ if __name__ == "__main__":
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
     W_c, t_c, energy_c, E = oppgave(X_0, omega_0_c, n, interval)
-
-    print(energy_a["rk4"])
 
     # Kan ikke se rk4 pga. fullstendig overlapp med rk45.
     while True:

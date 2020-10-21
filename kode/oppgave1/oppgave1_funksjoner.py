@@ -12,14 +12,14 @@ y = 1
 z = 2
 
 # Informasjon om håndtaket
-M_1 = 8.0 * np.pi  # g
-L_1 = 8.0  # meter
-R_1 = 1.0  # meter
+M_1 = 8.0 * np.pi * 6.7  # g
+L_1 = 8.0  # centimeter
+R_1 = 1.0  # centimeter
 
 # Informasjon om sylinderen festet på håndtaket
-M_2 = 4.0 * np.pi  # kg
-L_2 = 4.0  # meter
-R_2 = 1.0  # meter
+M_2 = 4.0 * np.pi * 6.7  # kg
+L_2 = 4.0  # centimeter
+R_2 = 1.0  # centimeter
 
 M = np.array([M_1, M_2], dtype=np.double)
 R = np.array([R_1, R_2], dtype=np.double)
@@ -48,13 +48,14 @@ def energi(X, I, omega):
     :param omega: vinkelhastighetsvektor
     """
 
-    L = calculate_L(X, I, omega) 
+    L = calculate_L(X, I, omega)
 
     return np.abs(np.vdot(((1 / 2) * L), omega))
 
 
 def calculate_L(X, I, omega):
     return np.dot(np.dot(X, I), omega)
+
 
 def treghetsmoment(M, R, L):
     """
@@ -66,20 +67,20 @@ def treghetsmoment(M, R, L):
     I[x, x] = (M[0] * R[0] ** 2) / 4 + (M[0] * L[0] ** 2) / 12 + (M[1] * R[1] ** 2) / 2
 
     I[y, y] = (
-        M[0] * (R[0] ** 2)
-        + (M[1] * L[1]) / 4
-        + (M[0] * R[0] ** 2) / 2
-        + (M[1] * R[1] ** 2) / 4
-        + (M[1] * L[1] ** 2) / 12
+        (M[0] * R[0] ** 2)
+        + (M[1] * L[1] ** 2 / 4)
+        + (M[0] * R[0] ** 2 / 2)
+        + (M[1] * R[1] ** 2 / 4)
+        + (M[1] * L[1] ** 2 / 12)
     )
 
     I[z, z] = (
-        M[0] * (R[0] ** 2)
-        + ((M[1] * L[1]) / 4)
-        + ((M[0] * (R[0] ** 2)) / 4)
-        + ((M[0] * (L[0] ** 2)) / 12)
-        + ((M[1] * (R[1]) ** 2) / 4)
-        + ((M[1] * (L[1] ** 2)) / 12)
+        (M[0] * R[0] ** 2)
+        + (M[1] * L[1] ** 2 / 4)
+        + (M[0] * R[0] ** 2 / 4)
+        + (M[0] * L[0] ** 2 / 12)
+        + (M[1] * R[1] ** 2 / 4)
+        + (M[1] * L[1] ** 2 / 12)
     )
 
     return I

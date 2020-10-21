@@ -12,7 +12,7 @@ from utils.utils import get_h, big, A, B, c, max_energy_difference
 from tqdm import tqdm
 
 
-def RK45(X_0, interval, n, L, I, initial_energy = 0):
+def RK45(X_0, interval, n, L, I, initial_energy=0):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
