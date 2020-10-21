@@ -48,14 +48,13 @@ def energi(X, I, omega):
     :param omega: vinkelhastighetsvektor
     """
 
-    L = calculate_L(X, I, omega)
+    L = calculate_L(X, I, omega) 
 
-    return (1 / 2) * np.abs(np.vdot((L), omega))
+    return np.abs(np.vdot(((1 / 2) * L), omega))
 
 
 def calculate_L(X, I, omega):
     return np.dot(np.dot(X, I), omega)
-
 
 def treghetsmoment(M, R, L):
     """

@@ -7,6 +7,7 @@ import math
 
 import pickle
 from punktgenerering import load_data
+from oppgave1.oppgave1_funksjoner import M, L, R
 import datetime
 
 time = 0
@@ -38,7 +39,7 @@ def cylinder_between(pointA, pointB, rad):
 def prepare():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45, wnd_w / wnd_h, 0.1, 10)
+    gluPerspective(45, wnd_w / wnd_h, 0.1, 100.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     gluLookAt(0, -2, 0, 0, 0, 0, 0, 0, 1)
@@ -52,7 +53,7 @@ def prepare():
 
     # glRotatef(-30.0, 0.0, 0.0, 1.0)
     glRotatef(30.0, 1.0, 0.0, 0.0)
-    glTranslatef(-2.0, 6.0, -3.0)
+    glTranslatef(-12.0, 36.0, -18.0)
     glRotatef(-30.0, 0.0, 0.0, 1.0)
 
 
@@ -81,10 +82,11 @@ def drawAxis():
 
 def drawTHandle(W):
     W = W.T
-    punktA = W[0]
-    punktB = W[1]
-    cylinder_between(punktA * 0.3, punktA + (punktA * 0.3), 0.3)
-    cylinder_between(-punktB, punktB, 0.3)
+    punktA = normalize(W[0])
+    punktB = normalize(W[1])
+
+    cylinder_between(punktA * R[0] - punktA*(center_of_mass), -punktA*(center_of_mass) + punktA*(L[1]) + (punktA * R[0]), R[1])
+    cylinder_between(-punktB*(L[0]/2) - punktA*(center_of_mass), punktB*(L[0]/2) - punktA*(center_of_mass), R[0])
 
 
 def draw():
@@ -94,13 +96,13 @@ def draw():
     time_index = (end_time - start_time).total_seconds() * 5
     glColor(1.0, 0.0, 0.0)
     drawTHandle(getWvalue(time_index, W_rk45, t_rk45))
-    glTranslate(2.0, 0.0, 0.0)
+    glTranslate(10.0, 0.0, 0.0)
     glColor(0.0, 1.0, 0.0)
     drawTHandle(getWvalue(time_index, W_rk4, t_rk4))
-    glTranslate(2.0, 0.0, 0.0)
+    glTranslate(10.0, 0.0, 0.0)
     glColor(0.0, 0.0, 1.0)
     drawTHandle(getWvalue(time_index, W_euler, t_euler))
-    glTranslate(2.0, 0.0, 0.0)
+    glTranslate(10.0, 0.0, 0.0)
     glutSwapBuffers()
     glutPostRedisplay()
 
@@ -108,11 +110,18 @@ def draw():
 def getWvalue(time_index, W, t):
     return W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))]
 
+def normalize(vector):
+    length = np.sqrt(sum(i**2 for i in vector))
+    return vector/length
+
+def calculate_center_of_mass(mass, radius, length):
+    return (mass[1]*(R[0] + L[1]/2))/(sum(i for i in mass))
 
 if __name__ == "__main__":
     oppgave = input("Oppgave nr [a, b, c]: ")
     W_rk45, W_rk4, W_euler, t_rk45, t_rk4, t_euler, E = load_data(f"test{oppgave}.npy")
     wnd_w, wnd_h = 1920, 1080
+    center_of_mass = calculate_center_of_mass(M, R, L)
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
     glutInitWindowSize(wnd_w, wnd_h)

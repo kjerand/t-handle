@@ -10,7 +10,7 @@ import pickle
 
 
 def save_data(X_0, omega_0, n, interval, filename, drop_energy=False):
-    W, t, E = oppgave(X_0, omega_0, n, interval)
+    W, t, _, E = oppgave(X_0, omega_0, n, interval, drop_energy=drop_energy)
     pickle.dump([W, t, E], open(f"data/{filename}", "wb"))
 
 
@@ -29,7 +29,7 @@ def load_data(filename):
 
 if __name__ == "__main__":
     n = 60000
-    interval = [0.0, 300.0]
+    interval = [0.0, 200.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T

@@ -20,7 +20,7 @@ def RK45(X_0, interval, n, L, I, initial_energy = 0):
     E = [0]
     energy = [
         initial_energy
-        if initial_energy != 0
+        if initial_energy == 0
         else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
     ]
 
