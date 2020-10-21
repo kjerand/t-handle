@@ -5,13 +5,14 @@ sys.path.append("..")
 import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp, energi
+from oppgave2.oppgave2 import exactSolution
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
 from utils.utils import get_h, big, A, B, c, max_energy_difference
 from tqdm import tqdm
 
 
-def RK45(X_0, interval, n, L, I, initial_energy):
+def RK45(X_0, interval, n, L, I, initial_energy = 0):
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
@@ -44,7 +45,7 @@ def RK45(X_0, interval, n, L, I, initial_energy):
             ),
         )
 
-        deltaW = W[i + 1] - Z[i + 1]
+        deltaW = W[-1] - Z[-1]
         E.append(np.sqrt(np.trace(np.dot(deltaW.T, deltaW))))
 
         new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
@@ -56,7 +57,6 @@ def RK45(X_0, interval, n, L, I, initial_energy):
 
         if np.abs(new_energy - initial_energy) > max_energy_difference:
             return RK45(X_0, interval, n * 2, L, I, initial_energy)
-
     return W, t, energy, E
 
 
@@ -67,9 +67,10 @@ def sigma(I, W, L, h, exp_inp):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    interval = [0, 10]
-    n = 100
+    interval = [0, 2]
+    n = 10000
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
-    W_r, t, E = RK45(X_0, [0.0, 10.0], n, L, I)
-    print(W_r[n])
+    W_r, t, _, E = RK45(X_0, interval, n, L, I)
+    print(W_r[-1])
+    print(exactSolution([2]))

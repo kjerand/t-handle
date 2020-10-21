@@ -61,9 +61,10 @@ def sigma_i(Sigma, h, I, W, L):
 
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.float)
-    h = get_h()
-    n = 1000
+    n = 10000
     L = np.array([1, 0, 0], dtype=np.float)
     I = np.identity(3, dtype=np.float)
-    interval = [0.0, 10.0]
-    W_r = RK4(X_0, interval, n, L, I)
+    interval = [0.0, 2.0]
+    W_r,_,_,_ = RK4(X_0, interval, n, L, I)
+    print(W_r[-1])
+    
