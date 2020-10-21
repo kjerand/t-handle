@@ -88,14 +88,33 @@ Implementasjonen av Runge-Kutta RK4 for vår modell vil være følgende.
 \end{aligned}
 \end{equation}
 
-\subsubsection{Runge-Kutta-Fehlberg}
-Runge-Kutta-Fehlberg 
+\subsubsection{Runge-Kutta-Fehlberg RKF45}
+Runge-Kutta-Fehlberg er enda en fjerde ordens Runge-Kutta metode, men den er enda mer nøyaktig enn RK4. Det som tillater RKF45 å være mer nøyaktig er at man gjør en ekstra beregning som tillater oss å beregne et feilestimat av femte orden. Ved hjelp av dette kan man bestemme om man bruker riktig steglengde $h$.\newline\newline
+Ved å bruke RKF45 kan man løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode. 
 \begin{equation}
 \begin{aligned}
     s_1&=f(t_i, w_i)\\
     s_2&=f(t_1+\frac{1}{4}h, w_i + \frac{1}{4}hs_1)\\
     s_3&=f(t_i+\frac{3}{8}h, w_i+\frac{3}{32}hs_1+\frac{9}{32}hs_2)\\
-    s_4&=f(t_i+\frac{12}{13}h, w_i+\frac{1932}{2197}hs_1-\frac{7000}{2197}hs_2+)\\
-    w_{i+1}&=w_i+\frac{h}{6}(s_1+2s_2+2s_3+s_4)
+    s_4&=f(t_i+\frac{12}{13}h, s_4+\frac{1932}{2197}hs_1-\frac{7200}{2197}hs_2+\frac{7296}{2197}hs_3)\\
+    s_5&=f(t_i+h, w_i + \frac{439}{216}hs_1-8hs_2+\frac{3680}{513}hs_3-\frac{845}{4104}hs_4)\\
+    s_6&=f(t_i+\frac{1}{2}h, w_i-\frac{8}{27}hs_1+2hs_2-\frac{3544}{2565}hs_3+\frac{1859}{4104}hs_4-+\frac{11}{40}hs_5)\\
+    w_{i+1}&=w_i+h(\frac{16}{135}s_1+\frac{1408}{2565}s_3+\frac{2197}{4104}s_4-\frac{1}{5}s_5)\\
+    z_{i+1}&=w_i+h(\frac{16}{135}s_1+\frac{6656}{12825}s_3+\frac{28561}{56430}s_4-\frac{9}{50}s_5+\frac{2}{55}s_6)\\
+\end{aligned}
+\end{equation}
+Implementasjonen av RKF45 for vår modell blir følgende.
+
+\begin{equation}
+\begin{aligned}
+    \Vec{\sigma}_1 &= I^{-1}W^T_i\Vec{L}\\
+    \Vec{\sigma}_2 &= I^{-1}exp(-h\frac{1}{4}\Sigma_1)W^T_i\Vec{L}\\
+    \Vec{\sigma}_3 &= I^{-1}exp(-h(\frac{3}{32}\Sigma_1 + \frac{9}{32}\Sigma_2))W^T_i\Vec{L}\\
+    \Vec{\sigma}_4 &= I^{-1}exp(-h(\frac{1932}{2197}\Sigma_1 +\frac{-7200}{2197}\Sigma_2+\frac{7296}{2197}\Sigma_3))W^T_i\Vec{L}\\
+    \Vec{\sigma}_5 &= I^{-1}exp(-h(\frac{439}{216}\Sigma_1-8\Sigma_2+\frac{3680}{513}\Sigma_3-\frac{845}{4104}\Sigma_4))W^T_i\Vec{L}\\
+    \Vec{\sigma}_6 &= I^{-1}exp(-h(-\frac{8}{27}\Sigma_1+2\Sigma_2-\frac{3544}{2565}\Sigma_3+\frac{1859}{4104}\Sigma_4-\frac{11}{40}\Sigma_5))W^T_i\Vec{L}\\
+    W_{i+1} &= W_iexp(h(\frac{25}{216}\Sigma_1+\frac{1408}{2565}\Sigma_3+\frac{2197}{4104}\Sigma_4-\frac{1}{5}\Sigma_5))\\
+    Z_{i+1} &= W_iexp(h(\frac{16}{135}\Sigma_1+\frac{6656}{12825}\Sigma_3+\frac{28561}{56430}\Sigma_4-\frac{9}{50}\Sigma_5+\frac{2}{55}\Simga_6))\\
+   
 \end{aligned}
 \end{equation}
