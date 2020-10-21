@@ -1,2 +1,31 @@
 \subsection{Oppgave 3}
-hei fra oppgave 3
+
+I oppgave 3 har vi skrevet kode som anvender følgende variant av eulers metode for å løse difflikningen fra oppgave 2:
+
+\begin{equation}
+    W_0 = y(t_0)
+\end{equation}
+
+\begin{equation}
+    W_{i+1} = W_i + hf(t_i, w_i)
+\end{equation}
+
+Ved å gjennomføre 10000 steg på et 2 sekunders intervall får numeriske metode følgende resultat (avrundet i rapporten, eksakt svar fås i av å kjøre koden):\newline
+\begin{equation}
+W_{10000} \approx    
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & -0.416 & -0.909 \\
+0 & 0.910 & -0.416
+\end{bmatrix}
+\end{equation}
+
+Det stemmer veldig godt overens med den eksakte løsningen som er vist under:\newline
+\begin{equation}
+X(2) =     
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & -0.416 & -0.909 \\
+0 & 0.909 & -0.416
+\end{bmatrix}
+\end{equation}

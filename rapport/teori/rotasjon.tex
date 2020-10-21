@@ -10,6 +10,7 @@ Når et stivt legeme roteres rundt en stasjonær akse (vanligvis $z$-aksen), så
 Her ser vi et eksempel på et stivt legeme som roterer rundt en stasjonær akse \cite{FYSIKK:1}. Som vi kan se er legemets posisjon beskrevet av $\theta.$\newline\newline
 Vinkelfarten $\omega_z$ er den tidsderiverte av $\theta$, og vinkelakselerasjonen $\alpha_z$ er den tidsderiverte av $\omega_z$, eller den andrederiverte av $\theta.$
 \begin{equation}
+\label{eqn:first}
     \omega_z=\lim_{\Delta t\rightarrow0}{\frac{\Delta\theta}{\Delta t}}=\frac{d\theta}{dt}
 \end{equation}
 \begin{equation}
@@ -61,7 +62,9 @@ Den rotasjonelle kinetiske energien til et stivt legeme som roterer om en akse a
 \end{equation}
 \subsubsection{Beregning av treghetsmoment}
 Parallell akse teoremet beskriver forholdet mellom treghetsmomentet til et stivt legeme med masse $M$ om to parallelle akser. Den ene aksen er aksen gjennom massesenteret, og den andre aksen er aksen en distanse $d$ fra den første aksen
-\includegraphics{rapport/teori/bilder/parallell.png}\newline
+\begin{center}
+\includegraphics{rapport/teori/bilder/parallell.png}
+\end{center}
 Her ser vi et stivt legeme med masse $M$, hvor den ene aksen går gjennom massesenteret. Her er treghetsmomentet $I_\text{cm}$. Den andre aksen ligger en distanse $d$ fra første akse, og her er treghetsmomentet $I_p.$\cite{FYSIKK:1} Parallell akse teoremet gir oss at
 \begin{equation}
     I_p=I_\text{cm}+Md^2
@@ -82,3 +85,45 @@ Likningen ovenfor forteller oss at treghetsmomentet avhenger av hvordan massetet
 \begin{equation}
     I=\rho\int{r^2\,dV}
 \end{equation}
+\subsubsection{Mellomakse-teoremet}
+Mellomakse-teoremet, også kjent som tennisracket-teoremet (Tennis Racket Theorem) \cite{DAMME:1} sier at rotasjon om første og tredje prinsipielle akse er stabilt, mens rotasjon om andre akse er ustabil. Med prinsipiell akse mener vi de $3$ aksene legemet kan rotere om, og hver akse har sitt eget treghetsmoment $I$. Dette medfører at det stive legemet vil rotere stabilt om aksene med minst og størst treghetsmoment.\newline\newline
+Vi sier at vi har en stabil rotasjon om en akse $j\ne i$ hvis
+\begin{equation}
+\label{eqn:stabil}
+    \frac{d^2}{dt^2}\omega_i=-k\cdot\omega_i
+\end{equation}
+hvor $k$ er et positivt tall. Siden $\omega_i$ blir motvirket, så vil rotasjonen om akse $j$ holde seg stabil.\newline\newline
+Vi sier at vi har en ustabil rotasjon om en akse $j\ne i$ hvis
+\begin{equation}
+\label{eqn:ustabil}
+    \frac{d^2}{dt^2}\omega_i=k\cdot\omega_i
+\end{equation}
+Siden $\omega_i$ ikke blir motvirket, så vil den fortsette å øke, og rotasjonen om akse $j$ vil bli ustabil.\newline\newline
+\paragraph{Bevis}
+Her følger et uformelt bevis på hvorfor mellomakse-teoremet er sant. La oss si at vi har et stivt legeme med 3 rotasjonsakser med treghetsmoment $I_1, I_2$ og $I_3$ og $I_1>I_2>I_3.$ La vinkelhastighetene rundt de $3$ aksene være $\omega_1, \omega_2,$ og $\omega_3.$ Vi antar konstant dreieimpuls her, så dreiemomentet $\tau=0$. Da vil Eulers likninger \cite{EULER:1} gi oss
+\begin{equation}
+\label{eqn:euler1}
+    I_1\frac{d}{dt}\omega_1=(I_2-I_3)\omega_2\omega_3
+\end{equation}
+\begin{equation}
+\label{eqn:euler2}
+    I_2\frac{d}{dt}\omega_2=(I_3-I_1)\omega_3\omega_1
+\end{equation}
+\begin{equation}
+\label{eqn:euler3}
+    I_3\frac{d}{dt}\omega_3=(I_1-I_2)\omega_1\omega_2
+\end{equation}
+Vi antar også at det er små vinkelhastigheter langs alle aksene, uavhengig av hvilken akse det stive legemet roterer rundt.\newline\newline
+La oss først anta at det stive legemet roterer om akse $1.$
+Hvis vi deriverer likning (\ref{eqn:euler2}) og bytter inn $\frac{d}{dt}\omega_3$ fra likning (\ref{eqn:euler3}), så får vi
+\begin{equation}
+    I_2I_3\frac{d^2}{dt^2}\omega_2=(I_3-I_1)(I_1-I_2)\omega_1^2\cdot\omega_2
+    \implies \frac{d^2}{dt^2}\omega_2=-k\cdot\omega_2
+\end{equation}
+siden $I_1-I_2>0$ og $I_3-I_1<0.$ Vi kan vise tilsvarende for $\omega_3$ også. Siden vinkelhastighetene til de andre aksene blir motvirket, så oppnår vi en stabil rotasjon her. Dette kommer fra likning (\ref{eqn:stabil}). Vi kan også vise tilsvarende for rotasjon om akse $3.$\newline\newline
+Lar det stive legemet rotere om akse $2.$ Hvis vi nå deriverer likning (\ref{eqn:euler1}), så får vi
+\begin{equation}
+    I_1I_3\frac{d^2}{dt^2}\omega_1=(I_2-I_3)(I_1-I_2)\omega_2^2\cdot\omega_1
+    \implies \frac{d^2}{dt^2}\omega_1=k\cdot\omega_1
+\end{equation}
+siden $I_2-I_3>0$ og $I_1-I_2>0.$ Vi kan vise tilsvarende for $\omega_3$ også. Siden vinkelhastighetene til de andre aksene blir større, så oppnår vi en ustabil rotasjon her. Dette kommer fra likning (\ref{eqn:ustabil}).
