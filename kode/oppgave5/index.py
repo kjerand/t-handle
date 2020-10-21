@@ -6,7 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 import numpy as np
-from oppgave1.oppgave1_funksjoner import treghetsmoment, M, L, R, energi
+from oppgave1.oppgave1_funksjoner import treghetsmoment, M, L, R, energi, calculate_L
 from oppgave4.RK45 import RK45
 from oppgave4.RK4 import RK4
 from oppgave3.euler import euler
@@ -33,17 +33,13 @@ def oppgave(X_0, omega_0, n, interval, drop_energy=False):
     )
 
 
-def calculate_L(X, I, omega):
-    return np.dot(np.dot(X, I), omega)
-
-
 if __name__ == "__main__":
-    n = 50000
-    interval = [0.0, 50.0]
+    n = 60000
+    interval = [0.0, 200.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    W_a, t_a, energy_a, E = oppgave(X_0, omega_0_a, n, interval, drop_energy=True)
+    # W_a, t_a, energy_a, E = oppgave(X_0, omega_0_a, n, interval, drop_energy=True)
 
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
     W_b, t_b, energy_b, E = oppgave(X_0, omega_0_b, n, interval)
