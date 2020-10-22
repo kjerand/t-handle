@@ -28,15 +28,15 @@ def load_data(filename):
 
 
 if __name__ == "__main__":
-    n = 60000
-    interval = [0.0, 200.0]
+    n = 100000
+    interval = [0.0, 500.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    save_data(X_0, omega_0_a, n, interval, "testa.npy", drop_energy=True)
+    save_data(X_0, omega_0_a, n, interval, "oppgavea.npy", drop_energy=True)
 
     omega_0_b = np.array([[0, 1.0, 0.05]], dtype=np.double).T
-    save_data(X_0, omega_0_b, n, interval, "testb.npy")
+    save_data(X_0, omega_0_b, n, interval, "oppgaveb.npy")
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
-    save_data(X_0, omega_0_c, n, interval, "testc.npy")
+    save_data(X_0, omega_0_c, n, interval, "oppgavec.npy")
