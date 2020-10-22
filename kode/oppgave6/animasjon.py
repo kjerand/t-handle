@@ -93,7 +93,7 @@ def draw():
     prepare()
     drawAxis()
     end_time = datetime.datetime.now()
-    time_index = (end_time - start_time).total_seconds() * 5
+    time_index = (end_time - start_time).total_seconds() * speed
     glColor(1.0, 0.0, 0.0)
     drawTHandle(getWvalue(time_index, W_rk45, t_rk45))
     glTranslate(10.0, 0.0, 0.0)
@@ -118,6 +118,8 @@ def calculate_center_of_mass(mass, radius, length):
     return (mass[1]*(R[0] + L[1]/2))/(sum(i for i in mass))
 
 if __name__ == "__main__":
+    speed = 1
+
     oppgave = input("Oppgave nr [a, b, c]: ")
     W_rk45, W_rk4, W_euler, t_rk45, t_rk4, t_euler, E = load_data(f"test{oppgave}.npy")
     wnd_w, wnd_h = 1920, 1080

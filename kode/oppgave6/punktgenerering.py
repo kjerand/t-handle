@@ -28,8 +28,8 @@ def load_data(filename):
 
 
 if __name__ == "__main__":
-    n = 60000
-    interval = [0.0, 200.0]
+    n = 100000
+    interval = [0.0, 500.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
