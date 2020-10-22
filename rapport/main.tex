@@ -2,6 +2,9 @@
 \usepackage{amsmath}
 \usepackage{subfiles}
 \usepackage{graphicx}
+\usepackage{nomencl}
+\newcommand{\nomunit}[1]{%
+\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 
 \setcounter{secnumdepth}{4}
 
@@ -15,6 +18,9 @@
 \maketitle
 \newpage
 \tableofcontents
+\newpage
+\section{Konstanter og funksjoner}\label{nomenklatur}
+\subfile{rapport/nomenklatur}
 \newpage
 \section{Teori}
 \subfile{rapport/teori/rotasjon}
