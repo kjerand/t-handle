@@ -10,13 +10,13 @@ I oppgave 3 har vi skrevet kode som anvender følgende variant av eulers metode 
     W_{i+1} = W_i + hf(t_i, w_i)
 \end{equation}
 
-Ved å gjennomføre 10000 steg på et 2 sekunders intervall får numeriske metode følgende resultat (avrundet i rapporten, eksakt svar fås i av å kjøre koden):\newline
+Ved å gjennomføre 10000 steg på et 2 sekunders intervall får numeriske metode følgende resultat:\newline
 \begin{equation}
 W_{10000} \approx    
 \begin{bmatrix}
-1 & 0 & 0 \\
-0 & -0.416 & -0.909 \\
-0 & 0.910 & -0.416
+1 & 0 & 0\\
+0 & -0.41623003 & -0.90938838\\
+0 & 0.90957028 & -0.41623003\\
 \end{bmatrix}
 \end{equation}
 
@@ -24,9 +24,9 @@ Det stemmer veldig godt overens med den eksakte løsningen som er vist under:\ne
 \begin{equation}
 X(2) =     
 \begin{bmatrix}
-1 & 0 & 0 \\
-0 & -0.416 & -0.909 \\
-0 & 0.909 & -0.416
+1 & 0 & 0\\
+0 & -0.41614684 & -0.90929743\\
+0 & 0.90929743 & -0.41614684\\
 \end{bmatrix}
 \end{equation}
 Her har vi brukt $X(0)=I=Id_{3\times3}$ og $L=\begin{bmatrix}1&0&0\end{bmatrix}.$
