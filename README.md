@@ -1,5 +1,5 @@
 # Prosjektoppgave i matematikk (TDAT3024)
-![](rapport/t-handle.gif)
+![](rapport/bilder/t-handle.gif)
 ## Medlemmer
 * Tobias Meyer Andersen
 * Kjerand Evje
