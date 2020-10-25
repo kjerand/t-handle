@@ -10,12 +10,14 @@ from utils.utils import get_h, big, max_energy_difference
 
 def RK4(X_0, interval, n, L, I, initial_energy=0):
     """
-    :param X_0: initialverdi til X.
-    :param h: stegstørrelse.
-    :param n: antall steg.
-    :param L: L-vektor (dreiemoment).
+    :param X_0: initialverdi til X
+    :param interval: start og sluttidspunkt for beregningen
+    :param n: antall steg
+    :param L: L-vektor (dreiemoment)
     :param I: treghetsmoment
     :return: Liste med punkter som er en tilnærming av den eksakte løsningen
+             Liste med tidspunkter som samsvarer med punktene
+             Liste med energien i systemet ved de ulike tidspunktene
     """
 
     h = float((interval[1] - interval[0]) / n)
@@ -54,8 +56,16 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
 
     return W, t, energy, [0]
 
-
+# hjelpemetode for å gjøre koden mer ryddig når vi beregner lilleSigma_1 --> lilleSigma_4 i RK4 / RK45
 def sigma_i(Sigma, h, I, W, L):
+    """
+    :param Sigma: forrige sigma som ble beregnet
+    :param h: steglengden
+    :param I: treghetsmomentet
+    :param W: tilnærming av punktene i løsningen sålangt
+    :param L: dreiemomentet
+    :return: neste Sigma verdi som brukes i RK metodene
+    """
     return np.dot(np.dot(np.linalg.inv(I), exp(-(h / 2), Sigma)), np.dot(W.T, L))
 
 

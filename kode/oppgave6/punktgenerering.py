@@ -2,7 +2,7 @@ import sys
 
 sys.path.append("..")
 
-from oppgave5.index import oppgave
+from oppgave5.index import oppgave5
 from utils.utils import get_h
 
 import numpy as np
@@ -10,7 +10,7 @@ import pickle
 
 
 def save_data(X_0, omega_0, n, interval, filename, drop_energy=False):
-    W, t, _, E = oppgave(X_0, omega_0, n, interval, drop_energy=drop_energy)
+    W, t, _, E = oppgave5(X_0, omega_0, n, interval, drop_energy=drop_energy)
     pickle.dump([W, t, E], open(f"data/{filename}", "wb"))
 
 

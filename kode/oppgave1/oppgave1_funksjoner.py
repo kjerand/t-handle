@@ -29,7 +29,8 @@ L = np.array([L_1, L_2], dtype=np.double)
 def exp(h, Omega):
     """
     :param h: steglengde
-    :param Omega: TODO: skrive hva omega er AKKURAT HER!
+    :param Omega: matrise med vinkelhastigheter
+    :return: exp(h*Omega) etter definisjonen i likning (21) i oppgaven
     """
     I = np.identity(3, dtype=np.double)
     omega = np.sqrt(Omega[2, 1] ** 2 + Omega[0, 2] ** 2 + Omega[1, 0] ** 1)
@@ -46,6 +47,7 @@ def energi(X, I, omega):
     :param X: rotasjon
     :param I: treghetsmoment
     :param omega: vinkelhastighetsvektor
+    :return: rotasjonsenergien til legemet
     """
 
     L = calculate_L(X, I, omega)
@@ -54,6 +56,12 @@ def energi(X, I, omega):
 
 
 def calculate_L(X, I, omega):
+    """
+    :param X: rotasjon
+    :param I: treghetsmoment
+    :param omega: vinkelhastighetsvektor
+    :return: L-vektoren fra likning (14) som er dreiemomentet til legemet
+    """
     return np.dot(np.dot(X, I), omega)
 
 
@@ -62,6 +70,7 @@ def treghetsmoment(M, R, L):
     :param M: Massen til de to sylinderne
     :param R: Radiusen til de to sylinderne
     :param L: lengden til de to sylinderne
+    :return: treghetsmomentet til legemet
     """
     I = np.full((3, 3), 0, dtype=np.double)
     I[x, x] = (M[0] * R[0] ** 2) / 4 + (M[0] * L[0] ** 2) / 12 + (M[1] * R[1] ** 2) / 2
@@ -84,7 +93,6 @@ def treghetsmoment(M, R, L):
     )
 
     return I
-
 
 def oppgaveA():
     print("Oppgave 1.a)")
