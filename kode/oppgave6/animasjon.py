@@ -14,11 +14,14 @@ time = 0
 start_time = datetime.datetime.now()
 
 
-def drawCylinder(punktA, punktB, radius):
-    gluCylinder()
-
-
 def cylinder_between(pointA, pointB, rad):
+    """
+    Denne funksjonen tegner en sylinder som starter i pointA og slutter i PointB med radius radS
+    :param pointA: punkt midt på starten av sylinderet
+    :param pointB: punkt midt på enden av sylinderet
+    :param rad: radiusen til sylinderet:
+    :return: none
+    """
     v = [pointB[0] - pointA[0], pointB[1] - pointA[1], pointB[2] - pointA[2]]
     v = np.array(v, dtype=np.double)
     height = math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
@@ -37,6 +40,10 @@ def cylinder_between(pointA, pointB, rad):
 
 
 def prepare():
+    """
+    denne funksjonen gjør noe nødvendig preprossesering i opengl
+    med tanke på farger, perspektiv etc
+    """
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     gluPerspective(45, wnd_w / wnd_h, 0.1, 100.0)
@@ -57,10 +64,13 @@ def prepare():
     glRotatef(-30.0, 0.0, 0.0, 1.0)
 
 
-# x-rød
-# y-grønn
-# z-blå
 def drawAxis():
+    """
+    tegner de tre aksene i rommet
+    x <-- rød
+    y <-- grønn
+    z <-- blå
+    """
     glPushMatrix()
     glColor(1.0, 0.0, 0.0)
     glBegin(GL_LINES)
@@ -81,6 +91,11 @@ def drawAxis():
 
 
 def drawTHandle(W):
+    """
+    Denne funksjonen tegner selve tnøkkelen, forenklet til to sylindere
+    :param W: punktene som definerer t-nøkkelen sin posisjon på et tidspunkt
+    :return: none
+    """
     W = W.T
     punktA = normalize(W[0])
     punktB = normalize(W[1])
@@ -98,6 +113,10 @@ def drawTHandle(W):
 
 
 def draw():
+    """
+    denne funksjonen kaller på preprosseseringen og tegningen
+    :return: none
+    """
     prepare()
     drawAxis()
     end_time = datetime.datetime.now()
@@ -116,15 +135,31 @@ def draw():
 
 
 def getWvalue(time_index, W, t):
+    """
+    :param time_index: indeksen til tidspunktet
+    :param W: listen over punktene til de ulike tidspunktene
+    :param t: listen over timestamps som tilhører punkter
+    :return: punktene som definerer t-nøkkelen ved et gitt tidspunkt
+    """
     return W[int((((time_index % int(t[-1])) / (t[-1] - t[0])) * len(W)))]
 
 
 def normalize(vector):
+    """
+    :param vector: inputvektoren
+    :return: inputvektoren normalisert til å ha lengde 1
+    """
     length = np.sqrt(sum(i ** 2 for i in vector))
     return vector / length
 
 
 def calculate_center_of_mass(mass, radius, length):
+    """
+    :param mass: liste med massen til de to sylindrene
+    :param radius: liste med radiusen til de to sylindrene
+    :param length: lengden til de to sylindrene
+    :return: massesenteret til t-nøkkelen
+    """
     return (mass[1] * (R[0] + L[1] / 2)) / (sum(i for i in mass))
 
 

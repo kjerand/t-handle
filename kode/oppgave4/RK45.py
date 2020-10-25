@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 
 def RK45(X_0, interval, n, L, I, initial_energy=0):
-     """
+    """
     :param X_0: initialverdi til X.
     :param interval: start og sluttidspunkt for beregningen
     :param n: antall steg.
