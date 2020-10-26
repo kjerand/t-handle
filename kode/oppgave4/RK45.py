@@ -13,6 +13,17 @@ from tqdm import tqdm
 
 
 def RK45(X_0, interval, n, L, I, initial_energy=0):
+    """
+    :param X_0: initialverdi til X.
+    :param interval: start og sluttidspunkt for beregningen
+    :param n: antall steg.
+    :param L: L-vektor (dreieimpuls).
+    :param I: treghetsmoment
+    :return: Liste med punkter som er en tilnærming av den eksakte løsningen
+             Liste med tidspunkter som samsvarer med punktene
+             Liste med energien i systemet ved de ulike tidspunktene
+             Liste med feilestimatet E som vist i kapittel 4.5 i oppgaven
+    """
     h = float((interval[1] - interval[0]) / n)
     t = [i * h for i in range(n + 1)]
     W = [X_0]
@@ -59,8 +70,16 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
             return RK45(X_0, interval, n * 2, L, I, initial_energy)
     return W, t, energy, E
 
-
+# hjelpemetode for å gjøre koden mer ryddig når vi beregner lilleSigma_1 --> lilleSigma_4 i RK4 / RK45
 def sigma(I, W, L, h, exp_inp):
+    """
+    :param Sigma: forrige sigma som ble beregnet
+    :param h: steglengden
+    :param I: treghetsmomentet
+    :param W: tilnærming av punktene i løsningen sålangt
+    :param L: dreieimpuls
+    :return: neste Sigma verdi som brukes i RK metodene
+    """
     return np.dot(np.linalg.inv(I), np.dot(exp(-h, exp_inp), np.dot(W.T, L)))
 
 
