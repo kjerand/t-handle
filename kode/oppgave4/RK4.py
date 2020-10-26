@@ -6,7 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave2.oppgave2 import exactSolution
-from utils.utils import get_h, big, max_energy_difference
+from utils.utils import get_h, big, max_energy_difference, error
 
 
 def RK4(X_0, interval, n, L, I, initial_energy=0):
@@ -75,9 +75,12 @@ if __name__ == "__main__":
     n = 10000
     L = np.array([1, 0, 0], dtype=np.float)
     I = np.identity(3, dtype=np.float)
-    interval = [0.0, 2.0]
-    W_r,_,_,_ = RK4(X_0, interval, n, L, I)
+    interval = [0.0, 10.0]
+    W_r,t,_,_ = RK4(X_0, interval, n, L, I)
     print("approksimert løsning: ")
     print(W_r[-1])
     print("eksakt løsning: ")
     print(exactSolution([interval[1]]))
+    exact_sol = exactSolution(t)
+
+    error(W_r, exact_sol, plot=True)

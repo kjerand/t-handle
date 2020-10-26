@@ -8,7 +8,7 @@ from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave2.oppgave2 import exactSolution
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
-from utils.utils import get_h, big, A, B, c, max_energy_difference
+from utils.utils import get_h, big, A, B, c, max_energy_difference, error
 from tqdm import tqdm
 
 
@@ -86,8 +86,8 @@ def sigma(I, W, L, h, exp_inp):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    interval = [0, 2]
-    n = 10000
+    interval = [0, 10]
+    n = 1000
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W_r, t, _, E = RK45(X_0, interval, n, L, I)
@@ -95,3 +95,10 @@ if __name__ == "__main__":
     print(W_r[-1])
     print("Eksakt løsning: ")
     print(exactSolution([interval[1]]))
+    
+    exact_sol = exactSolution(t)
+
+    error(W_r, exact_sol, plot=True)
+    #for i in range(len(exact_sol)):
+    #    print(error(exact_sol[i], W_r[i]))
+
