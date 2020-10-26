@@ -27,7 +27,7 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
     energy = [
         initial_energy
         if initial_energy != 0
-        else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
+        else energi(I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
     ]
 
     for i in tqdm(range(n)):
@@ -45,8 +45,8 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
             )
         )
 
-        new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
-        new_energy = energi(W[-1], I, new_omega)
+        new_omega = np.dot(np.linalg.inv(np.dot(W[i], I)), L)
+        new_energy = energi(I, new_omega)
         energy.append(new_energy)
 
         if initial_energy == 0:
@@ -56,6 +56,7 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
             return RK4(X_0, interval, n * 2, L, I, initial_energy)
 
     return W, t, energy, [0]
+
 
 # hjelpemetode for å gjøre koden mer ryddig når vi beregner lilleSigma_1 --> lilleSigma_4 i RK4 / RK45
 def sigma_i(Sigma, h, I, W, L):
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     L = np.array([1, 0, 0], dtype=np.float)
     I = np.identity(3, dtype=np.float)
     interval = [0.0, 10.0]
-    W_r,t,_,_ = RK4(X_0, interval, n, L, I)
+    W_r, t, _, _ = RK4(X_0, interval, n, L, I)
     print("approksimert løsning: ")
     print(W_r[-1])
     print("eksakt løsning: ")

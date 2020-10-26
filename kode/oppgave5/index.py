@@ -19,14 +19,14 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
     :param omega_0: vinkelhastighet ved tidspunkt 0
     :param n: antall steg.
     :param interval: start og sluttidspunkt for beregningen
-    :return: et tuppel med dictionaries som inneholder informasjon om 
-             plassering av punktene, timestampene deres, og energien 
+    :return: et tuppel med dictionaries som inneholder informasjon om
+             plassering av punktene, timestampene deres, og energien
              ved de ulike tidspunktene for de tre ulike metoden RK4, RK45, Euler.
     """
     I = treghetsmoment(M, R, L)
-    L_vector = calculate_L(X_0, I, omega_0)
+    L_vector = calculate_L(I, omega_0)
 
-    initial_energy = energi(X_0, I, omega_0) if not drop_energy else 0
+    initial_energy = energi(I, omega_0) if not drop_energy else 0
 
     W_rk45, t_rk45, energy_rk45, E = RK45(X_0, interval, n, L_vector, I, initial_energy)
     W_rk4, t_rk4, energy_rk4, _ = RK4(X_0, interval, n, L_vector, I, initial_energy)
@@ -41,14 +41,15 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
 
 
 if __name__ == "__main__":
-    n = 10000
-    interval = [0.0, 2.0]
+    n = 1000000
+    interval = [0.0, 10.0 * np.pi]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval, drop_energy=True)
+    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval)
     print(W_a["rk45"][-1])
 
+    """
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
     W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval)
     print(W_b["rk45"][-1])
@@ -56,7 +57,7 @@ if __name__ == "__main__":
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
     W_c, t_c, energy_c, E = oppgave5(X_0, omega_0_c, n, interval)
     print(W_c["rk45"][-1])
-
+    """
     # Kan ikke se rk4 pga. fullstendig overlapp med rk45.
     while True:
         oppgave = input("Oppgave nr [a, b, c]: ")

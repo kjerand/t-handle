@@ -26,7 +26,7 @@ def euler(X_0, interval, n, L, I, initial_energy=0):
     energy = [
         initial_energy
         if initial_energy != 0
-        else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
+        else energi(I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
     ]
 
     for i in tqdm(range(n)):
@@ -35,7 +35,7 @@ def euler(X_0, interval, n, L, I, initial_energy=0):
         W.append(np.dot(W[i], exp(h, Omega)))
 
         new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
-        new_energy = energi(W[-1], I, new_omega)
+        new_energy = energi(I, new_omega)
 
         energy.append(new_energy)
 

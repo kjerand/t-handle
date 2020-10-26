@@ -42,7 +42,7 @@ def exp(h, Omega):
     )
 
 
-def energi(X, I, omega):
+def energi(I, omega):
     """
     :param X: rotasjon
     :param I: treghetsmoment
@@ -50,19 +50,27 @@ def energi(X, I, omega):
     :return: rotasjonsenergien til legemet
     """
 
-    L = calculate_L(X, I, omega)
+    L = calculate_L(I, omega)
 
-    return np.abs(np.vdot(((1 / 2) * L), omega))
+    return (1 / 2) * np.abs(np.vdot((L), omega))
 
 
-def calculate_L(X, I, omega):
+def calculate_L(I, omega):
     """
     :param X: rotasjon
     :param I: treghetsmoment
     :param omega: vinkelhastighetsvektor
     :return: L-vektoren fra likning (14) som er dreieimpulsen til legemet
     """
-    return np.dot(np.dot(X, I), omega)
+    # return np.dot(np.dot(X, I), omega)
+
+    L_x = I[x, x] * omega[x] - I[x, y] * omega[y] - I[x, z] * omega[z]
+    L_y = -I[y, x] * omega[x] + I[y, y] * omega[y] - I[y, z] * omega[z]
+    L_z = -I[z, x] * omega[x] - I[z, y] * omega[y] + I[z, z] * omega[z]
+
+    return np.dot(I, omega)
+
+    return np.array([L_x, L_y, L_z], dtype=np.double)
 
 
 def treghetsmoment(M, R, L):
@@ -93,6 +101,7 @@ def treghetsmoment(M, R, L):
     )
 
     return I
+
 
 def oppgaveA():
     print("Oppgave 1.a)")

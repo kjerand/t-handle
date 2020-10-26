@@ -164,7 +164,7 @@ def calculate_center_of_mass(mass, radius, length):
 
 
 if __name__ == "__main__":
-    speed = 1
+    speed = 10
 
     oppgave = input("Oppgave nr [a, b, c]: ")
     W_rk45, W_rk4, W_euler, t_rk45, t_rk4, t_euler, E = load_data(

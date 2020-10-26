@@ -8,7 +8,7 @@ from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave2.oppgave2 import exactSolution
 from oppgave3.euler import euler
 from oppgave4.RK4 import RK4
-from utils.utils import get_h, big, A, B, c, max_energy_difference, error
+from utils.utils import get_h, big, A, B, c, max_energy_difference, error, T
 from tqdm import tqdm
 
 
@@ -32,7 +32,7 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
     energy = [
         initial_energy
         if initial_energy != 0
-        else energi(X_0, I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
+        else energi(I, np.dot(np.linalg.inv(np.dot(X_0, I)), L))
     ]
 
     for i in tqdm(range(0, n)):  # O(n)
@@ -56,11 +56,26 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
             ),
         )
 
-        deltaW = W[-1] - Z[-1]
+        deltaW = W[i] - Z[i]
         E.append(np.sqrt(np.trace(np.dot(deltaW.T, deltaW))))
 
-        new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
-        new_energy = energi(W[-1], I, new_omega)
+        """
+        if i == 0 and not within_tolerance(E[-1], W[-1]):
+            new_h = get_new_h(h, W[-1], E[-1])
+            print(new_h)
+            return RK45(
+                X_0,
+                interval,
+                (int((interval[1] - interval[0]) / new_h)),
+                L,
+                I,
+                initial_energy,
+            )
+        """
+
+        new_omega = np.dot(np.linalg.inv(np.dot(W[i], I)), L)
+        # new_omega = np.dot(np.linalg.inv(I), np.dot(W[i].T, L))
+        new_energy = energi(I, new_omega)
         energy.append(new_energy)
 
         if initial_energy == 0:
@@ -68,7 +83,9 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
 
         if np.abs(new_energy - initial_energy) > max_energy_difference:
             return RK45(X_0, interval, n * 2, L, I, initial_energy)
+
     return W, t, energy, E
+
 
 # hjelpemetode for å gjøre koden mer ryddig når vi beregner lilleSigma_1 --> lilleSigma_4 i RK4 / RK45
 def sigma(I, W, L, h, exp_inp):
@@ -83,22 +100,33 @@ def sigma(I, W, L, h, exp_inp):
     return np.dot(np.linalg.inv(I), np.dot(exp(-h, exp_inp), np.dot(W.T, L)))
 
 
+def within_tolerance(e_i, w_i):
+    return (e_i / np.abs(np.sqrt(np.trace(np.dot(w_i.T, w_i))))) < T
+
+
+def get_new_h(h, w_i, e_i):
+    return (
+        0.8
+        * (((T * np.abs(np.sqrt(np.trace(np.dot(w_i.T, w_i)))) / (e_i)) ** (1 / 5)))
+        * h
+    )
+
+
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    interval = [0, 10]
-    n = 1000
-    L = np.array([1, 0, 0], dtype=np.double)
+    interval = [0, 50]
+    n = 100
+    L = np.array([1, 0.05, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W_r, t, _, E = RK45(X_0, interval, n, L, I)
     print("Approksimert løsning: ")
     print(W_r[-1])
     print("Eksakt løsning: ")
     print(exactSolution([interval[1]]))
-    
+
     exact_sol = exactSolution(t)
 
     error(W_r, exact_sol, plot=True)
-    #for i in range(len(exact_sol)):
+    # for i in range(len(exact_sol)):
     #    print(error(exact_sol[i], W_r[i]))
-

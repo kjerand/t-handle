@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def get_h():
@@ -16,7 +17,7 @@ def big(vector):
     )
 
 
-max_energy_difference = 10
+max_energy_difference = 2
 
 A = np.array(
     [
@@ -29,6 +30,26 @@ A = np.array(
     ],
     dtype=np.float,
 ).T
+
+T = 0.000001
+
+
+def error(W, exact, plot=False):
+    errors = np.asarray([errorElem(W[i], exact[i]) for i in range(len(exact))])
+    if plot:
+        plt.plot([i for i in range(len(W))], errors)
+        plt.show()
+
+    return errors
+
+
+def errorElem(matrix1, matrix2):
+    if matrix1.shape != matrix2.shape:
+        return -1
+
+    m1 = matrix1.reshape(-1, 1)
+    m2 = matrix2.reshape(-1, 1)
+    return sum(np.abs(m1[i] - m2[i]) for i in range(len(m1)))
 
 
 B = np.array(
