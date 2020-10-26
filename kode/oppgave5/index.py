@@ -19,6 +19,7 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
     :param omega_0: vinkelhastighet ved tidspunkt 0
     :param n: antall steg.
     :param interval: start og sluttidspunkt for beregningen
+    :param drop_energy: bestemmer hvorvidt vi skal droppe eller ta med energiberegningene
     :return: et tuppel med dictionaries som inneholder informasjon om
              plassering av punktene, timestampene deres, og energien
              ved de ulike tidspunktene for de tre ulike metoden RK4, RK45, Euler.
@@ -41,15 +42,14 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
 
 
 if __name__ == "__main__":
-    n = 1000000
-    interval = [0.0, 10.0 * np.pi]
+    n = 1000
+    interval = [0.0, 50.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
     W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval)
     print(W_a["rk45"][-1])
 
-    """
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
     W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval)
     print(W_b["rk45"][-1])
@@ -57,22 +57,26 @@ if __name__ == "__main__":
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T
     W_c, t_c, energy_c, E = oppgave5(X_0, omega_0_c, n, interval)
     print(W_c["rk45"][-1])
-    """
-    # Kan ikke se rk4 pga. fullstendig overlapp med rk45.
-    while True:
-        oppgave = input("Oppgave nr [a, b, c]: ")
-        if oppgave == "a":
-            for method in ["euler", "rk4", "rk45"]:
-                plt.plot(t_a[method], energy_a[method], label=f"{method}")
-            plt.legend()
-            plt.show()
-        if oppgave == "b":
-            for method in ["euler", "rk4", "rk45"]:
-                plt.plot(t_b[method], energy_b[method], label=f"{method}")
-            plt.legend()
-            plt.show()
-        if oppgave == "c":
-            for method in ["euler", "rk4", "rk45"]:
-                plt.plot(t_c[method], energy_c[method], label=f"{method}")
-            plt.legend()
-            plt.show()
+
+    f, (ax1, ax2, ax3) = plt.subplots(1, 3)
+
+    for method in ["euler", "rk4", "rk45"]:
+        ax1.plot(t_a[method], energy_a[method], label=f"{method}")
+        ax1.set_xlabel("Tid i sekunder")
+        ax1.set_ylabel("Energi i mikrojoule")
+        ax1.set_title("a)")
+
+    for method in ["euler", "rk4", "rk45"]:
+        ax2.plot(t_b[method], energy_b[method], label=f"{method}")
+        ax2.set_xlabel("Tid i sekunder")
+        ax2.set_ylabel("Energi i mikrojoule")
+        ax2.set_title("b)")
+
+    for method in ["euler", "rk4", "rk45"]:
+        ax3.plot(t_c[method], energy_c[method], label=f"{method}")
+        ax3.set_xlabel("Tid i sekunder")
+        ax3.set_ylabel("Energi i mikrojoule")
+        ax3.set_title("c)")
+
+    plt.legend()
+    plt.show()
