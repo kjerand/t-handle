@@ -13,7 +13,7 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
     :param X_0: initialverdi til X
     :param interval: start og sluttidspunkt for beregningen
     :param n: antall steg
-    :param L: L-vektor (dreiemoment)
+    :param L: L-vektor (dreieimpuls)
     :param I: treghetsmoment
     :return: Liste med punkter som er en tilnærming av den eksakte løsningen
              Liste med tidspunkter som samsvarer med punktene
@@ -63,7 +63,7 @@ def sigma_i(Sigma, h, I, W, L):
     :param h: steglengden
     :param I: treghetsmomentet
     :param W: tilnærming av punktene i løsningen sålangt
-    :param L: dreiemomentet
+    :param L: dreieimpuls
     :return: neste Sigma verdi som brukes i RK metodene
     """
     return np.dot(np.dot(np.linalg.inv(I), exp(-(h / 2), Sigma)), np.dot(W.T, L))

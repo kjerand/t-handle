@@ -15,7 +15,7 @@ def euler(X_0, interval, n, L, I, initial_energy=0):
     :param X_0: initialverdi til X.
     :param interval: intervallet til den numeriske løsningen.
     :param n: antall steg.
-    :param L: L-vektor (dreiemoment).
+    :param L: L-vektor (dreieimpuls).
     :param I: treghetsmoment
     :return: Liste med punkter som er en tilnærming av den eksakte løsningen
     """

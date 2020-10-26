@@ -17,7 +17,7 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
     :param X_0: initialverdi til X.
     :param interval: start og sluttidspunkt for beregningen
     :param n: antall steg.
-    :param L: L-vektor (dreiemoment).
+    :param L: L-vektor (dreieimpuls).
     :param I: treghetsmoment
     :return: Liste med punkter som er en tilnærming av den eksakte løsningen
              Liste med tidspunkter som samsvarer med punktene
@@ -77,7 +77,7 @@ def sigma(I, W, L, h, exp_inp):
     :param h: steglengden
     :param I: treghetsmomentet
     :param W: tilnærming av punktene i løsningen sålangt
-    :param L: dreiemomentet
+    :param L: dreieimpuls
     :return: neste Sigma verdi som brukes i RK metodene
     """
     return np.dot(np.linalg.inv(I), np.dot(exp(-h, exp_inp), np.dot(W.T, L)))

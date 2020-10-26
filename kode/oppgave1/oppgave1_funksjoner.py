@@ -60,7 +60,7 @@ def calculate_L(X, I, omega):
     :param X: rotasjon
     :param I: treghetsmoment
     :param omega: vinkelhastighetsvektor
-    :return: L-vektoren fra likning (14) som er dreiemomentet til legemet
+    :return: L-vektoren fra likning (14) som er dreieimpulsen til legemet
     """
     return np.dot(np.dot(X, I), omega)
 
