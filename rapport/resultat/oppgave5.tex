@@ -1,11 +1,12 @@
 \subsection{Oppgave 5}
+\label{section:oppgave5}
 I oppgave 5 har vi benyttet koden vi skrev i oppgave 4 og løst systemet med RK45. \newline\newline
 For å finne treghetsmomentet har vi benyttet kode fra oppgave 1 som ligger i "kode/oppgave1/oppgave1funksjoner.py" og masse, radius og lengde oppgitt tidligere i oppgaven. Videre har vi kalkulert $\vec{L}$ med en funksjon som også finnes i "kode/oppgave1/oppgave1funksjoner.py". For å regne ut $\vec{L}$ i denne funksjonen bruker vi likning (\ref{eq:dreieimpuls}) sammen med initialverdiene for $X$ og $\omega.$
 \begin{equation}
 \vec{L} = X_0I\vec{\omega_0}
 \end{equation}
 Siden $\vec{\omega_0}$ allerede har lenge ca. lik 1 i oppgavene a, b, og c, så regner vi $\vec{L}$ ut fra den. Dermed får vi en $\vec{L}$ slik at $\vec{\omega}$ har lengde ca. lik 1 ved tiden $t=0.$\newline\newline
-For å kontrollere steglengden slik at energien ikke endrer seg nevneverdig, så har vi implementert dynamisk steglengde. Det vil si at hvis energiforskjellen mellom $t_0$ og $t_{i}$ er større enn en satt grense, som vi har valgt å sette lik $1\text{ }\mu\text{J}$, så vil steglengden halveres. Denne grensen er satt i "kode/utils/utils.py", og denne formen for dynamisk steglengde er implementert for alle de numeriske metodene vi har brukt i prosjektet. Resultatene vi viser i deloppgavene blir alle regnet ut med RK45, og steglengden er $0.002.$ med $0\leq t \leq 2$
+For å kontrollere steglengden slik at energien ikke endrer seg nevneverdig, så har vi implementert dynamisk steglengde. Det vil si at hvis energiforskjellen mellom $t_0$ og $t_{i}$ er større enn en satt grense, som vi har valgt å sette lik $1\text{ }\mu\text{J}$, så vil steglengden halveres. Denne grensen er satt i "kode/utils/utils.py", og denne formen for dynamisk steglengde er implementert for alle de numeriske metodene vi har brukt i prosjektet. Resultatene vi viser i deloppgavene blir alle regnet ut med RK45, og steglengden er $2\cdot10^{-5}.$ med $0\leq t \leq 2$
 \subsubsection{Deloppgave a}
 Vi kjører RK45 for $\vec{\omega}(0)=\begin{bmatrix}1&0.05&0\end{bmatrix}$ og får dette resultatet ved $t=2\text{ s}:$
 \begin{equation}
