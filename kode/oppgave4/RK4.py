@@ -45,7 +45,7 @@ def RK4(X_0, interval, n, L, I, initial_energy=0):
             )
         )
 
-        new_omega = np.dot(np.linalg.inv(np.dot(W[i], I)), L)
+        new_omega = np.dot(np.linalg.inv(np.dot(W[-1], I)), L)
         new_energy = energi(I, new_omega)
         energy.append(new_energy)
 
@@ -72,11 +72,11 @@ def sigma_i(Sigma, h, I, W, L):
 
 
 if __name__ == "__main__":
-    X_0 = np.identity(3, dtype=np.float)
-    n = 10000
-    L = np.array([1, 0, 0], dtype=np.float)
-    I = np.identity(3, dtype=np.float)
-    interval = [0.0, 10.0]
+    X_0 = np.identity(3, dtype=np.double)
+    n = 50000
+    L = np.array([1, 0, 0], dtype=np.double)
+    I = np.identity(3, dtype=np.double)
+    interval = [0.0, 50.0]
     W_r, t, _, _ = RK4(X_0, interval, n, L, I)
     print("approksimert løsning: ")
     print(W_r[-1])
@@ -84,4 +84,4 @@ if __name__ == "__main__":
     print(exactSolution([interval[1]]))
     exact_sol = exactSolution(t)
 
-    error(W_r, exact_sol, plot=True)
+    error(W_r, exact_sol, plot=True, title="RK4")

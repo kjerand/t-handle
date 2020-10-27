@@ -34,10 +34,11 @@ A = np.array(
 T = 0.000001
 
 
-def error(W, exact, plot=False):
+def error(W, exact, plot=False, title="yoyo"):
     errors = np.asarray([errorElem(W[i], exact[i]) for i in range(len(exact))])
     if plot:
         plt.plot([i for i in range(len(W))], errors)
+        plt.title(title)
         plt.show()
 
     return errors

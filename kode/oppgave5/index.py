@@ -25,7 +25,7 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
              ved de ulike tidspunktene for de tre ulike metoden RK4, RK45, Euler.
     """
     I = treghetsmoment(M, R, L)
-    L_vector = calculate_L(I, omega_0)
+    L_vector =  np.dot(X_0, np.dot(I, omega_0))  #calculate_L(I, omega_0)
 
     initial_energy = energi(I, omega_0) if not drop_energy else 0
 
@@ -42,16 +42,16 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
 
 
 if __name__ == "__main__":
-    n = 1000
+    n = 20000
     interval = [0.0, 50.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval)
+    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval, drop_energy=True)
     print(W_a["rk45"][-1])
 
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
-    W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval)
+    W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval, drop_energy=True)
     print(W_b["rk45"][-1])
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T

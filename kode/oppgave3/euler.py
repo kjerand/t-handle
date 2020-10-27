@@ -6,7 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from oppgave1.oppgave1_funksjoner import exp, energi
 from oppgave2.oppgave2 import exactSolution
-from utils.utils import big, get_h, max_energy_difference
+from utils.utils import big, get_h, max_energy_difference, error
 from tqdm import tqdm
 
 
@@ -52,8 +52,8 @@ def euler(X_0, interval, n, L, I, initial_energy=0):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    n = 10000
-    interval = [0.0, 2.0]
+    n = 50000
+    interval = [0.0, 50.0]
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W, t, _, _ = euler(X_0, interval, n, L, I)
@@ -63,3 +63,6 @@ if __name__ == "__main__":
     exact_sol = exactSolution(t)
     print("Eksakt løsning:")
     print(exact_sol[-1])
+
+
+    error(W, exact_sol, plot=True, title="Euler")

@@ -116,8 +116,8 @@ if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
     interval = [0, 50]
-    n = 100
-    L = np.array([1, 0.05, 0], dtype=np.double)
+    n = 50000
+    L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W_r, t, _, E = RK45(X_0, interval, n, L, I)
     print("Approksimert løsning: ")
@@ -127,6 +127,6 @@ if __name__ == "__main__":
 
     exact_sol = exactSolution(t)
 
-    error(W_r, exact_sol, plot=True)
+    error(W_r, exact_sol, plot=True, title="RK45")
     # for i in range(len(exact_sol)):
     #    print(error(exact_sol[i], W_r[i]))
