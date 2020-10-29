@@ -128,7 +128,7 @@ if __name__ == "__main__":
     exact_sol = exactSolution(t)
 
     error(W_r, exact_sol, plot=True, title="RK45")
-    
-    #for i in range(len(exact_sol)):
+
+    # for i in range(len(exact_sol)):
     #    print(error(exact_sol[i], W_r[i]))
-    #    
+    #

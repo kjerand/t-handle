@@ -16,6 +16,7 @@ CONSTANT = 2
 Her har vi et eksempel på en funksjon som er kommentert på en god måte.
 """
 
+
 def sum(a, b, c):
     """
     :param a: Første heltall.

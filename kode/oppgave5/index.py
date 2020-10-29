@@ -25,7 +25,7 @@ def oppgave5(X_0, omega_0, n, interval, drop_energy=False):
              ved de ulike tidspunktene for de tre ulike metoden RK4, RK45, Euler.
     """
     I = treghetsmoment(M, R, L)
-    L_vector =  np.dot(X_0, np.dot(I, omega_0))  #calculate_L(I, omega_0)
+    L_vector = np.dot(X_0, np.dot(I, omega_0))  # calculate_L(I, omega_0)
 
     initial_energy = energi(I, omega_0) if not drop_energy else 0
 

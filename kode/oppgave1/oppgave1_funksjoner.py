@@ -1,5 +1,3 @@
-#  Oppgave 1.a)
-
 import sys
 
 sys.path.append("..")

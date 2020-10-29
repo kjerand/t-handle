@@ -48,7 +48,7 @@ def errorElem(matrix1, matrix2):
     if matrix1.shape != matrix2.shape:
         return -1
 
-    deltaW = matrix1-matrix2
+    deltaW = matrix1 - matrix2
 
     return np.sqrt(np.trace(np.dot(deltaW.T, deltaW)))
 
