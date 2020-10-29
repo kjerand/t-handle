@@ -46,13 +46,13 @@ def RK45(X_0, interval, n, L, I, initial_energy=0):
         W.append(
             np.dot(
                 W[i],
-                exp(h, sum(B[0, i] * big(sigmas[i]) for i in range(6))),
+                exp(h, sum(B[0, k] * big(sigmas[k]) for k in range(6))),
             ),
         )
         Z.append(
             np.dot(
                 W[i],
-                exp(h, sum(B[1, i] * big(sigmas[i]) for i in range(6))),
+                exp(h, sum(B[1, k] * big(sigmas[k]) for k in range(6))),
             ),
         )
 
@@ -115,7 +115,7 @@ def get_new_h(h, w_i, e_i):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    interval = [0, 2]
+    interval = [0, 50]
     n = 50000
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
@@ -128,5 +128,7 @@ if __name__ == "__main__":
     exact_sol = exactSolution(t)
 
     error(W_r, exact_sol, plot=True, title="RK45")
-    # for i in range(len(exact_sol)):
+    
+    #for i in range(len(exact_sol)):
     #    print(error(exact_sol[i], W_r[i]))
+    #    

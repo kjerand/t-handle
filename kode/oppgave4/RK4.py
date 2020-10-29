@@ -73,10 +73,10 @@ def sigma_i(Sigma, h, I, W, L):
 
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
-    n = 5000
+    n = 50000
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
-    interval = [0.0, 2.0]
+    interval = [0.0, 50.0]
     W_r, t, _, _ = RK4(X_0, interval, n, L, I)
     print("approksimert løsning: ")
     print(W_r[-1])

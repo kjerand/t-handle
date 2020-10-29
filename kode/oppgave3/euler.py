@@ -53,8 +53,8 @@ def euler(X_0, interval, n, L, I, initial_energy=0):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    n = 5000
-    interval = [0.0, 200.0]
+    n = 50000
+    interval = [0.0, 50.0]
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)
     W, t, _, _ = euler(X_0, interval, n, L, I)
@@ -65,18 +65,4 @@ if __name__ == "__main__":
     print("Eksakt løsning:")
     print(exact_sol[-1])
 
-
-    energy = []
-    for i in exact_sol:
-        new_omega = np.dot(np.linalg.inv(np.dot(i, I)), L)
-        new_energy = energi(I, new_omega)
-
-        energy.append(new_energy)
-
-    print(len(energy))
-    print(len(t))
-    plt.plot(t, energy)
-    plt.show()
-
-
-    #error(W, exact_sol, plot=True, title="Euler")
+    error(W, exact_sol, plot=True, title="Euler")

@@ -48,9 +48,9 @@ def errorElem(matrix1, matrix2):
     if matrix1.shape != matrix2.shape:
         return -1
 
-    m1 = matrix1.reshape(-1, 1)
-    m2 = matrix2.reshape(-1, 1)
-    return sum(np.abs(m1[i] - m2[i]) for i in range(len(m1)))
+    deltaW = matrix1-matrix2
+
+    return np.sqrt(np.trace(np.dot(deltaW.T, deltaW)))
 
 
 B = np.array(
