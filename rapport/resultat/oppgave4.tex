@@ -11,7 +11,7 @@ W_{i+1} &= W_i \exp{(\frac{h}{2}(\Sigma_1 + \Sigma_2)} \\
 \text{hvor } \Sigma_i \text{ for korresponderende }& \vec{\sigma_i} \text{finnes på samme måte som } \Omega \\
 \end{aligned}
 $$
-Koden for implementasjonen av denne numeriske metoden finnes i "kode/oppgave4/RK4.py"\newline 
+Koden for implementasjonen av denne numeriske metoden finnes i \ref{kode:RK4} \newline 
 Ved kjøring av koden og bruk av 10000 steg over 2 sekunder med samme initialbetingelser som i oppgave 2 ($I=Id_{3x3}, X_0 = I, \vec{L} = \begin{bmatrix} 1 & 0 & 0\end{bmatrix})$ Så får vi dette resultatet ved siste iterasjon (altså t = 2s):\newline
 $$
 \begin{bmatrix}
@@ -32,7 +32,7 @@ $$
     0 & 0.90929743 & -0.41614684\\
     \end{bmatrix}
 $$ \newline Ser at svarene stemmer godt overens \newline \newline
-Implementasjonen av RK4 tar i bruk skjemaet i ligning (39), som i koden er lagret i "kode/utils/utils.py" som matrisene A, B og c.\newline 
+Implementasjonen av RKF45 tar i bruk skjemaet i ligning (39), som i koden er lagret i \ref{kode:utils} som matrisene A, B og c.\newline 
 Stegene for den numeriske utregningen er: \newline
 $$
 \begin{aligned}
@@ -49,7 +49,7 @@ E &= \sqrt{trace(\Delta W^T \Delta W)}
 \end{aligned}
 $$
 For hvert ledd i tillegg til å finne W finner vi da også et tilnærmet mål på feilen i utregningen av $W_{i}$ og lagrer disse feilene i en liste E.\newline \newline
-Koden for implementasjonen av RK-Fehlberg ligger i "kode/oppgave4/RK45.py".\newline
+Koden for implementasjonen av RK-Fehlberg ligger i \ref{kode:RK45}.\newline
 Ved kjøring av koden og bruk av 10000 steg over 2 sekunder med samme initialbetingelser som i oppgave 2 ($I=Id_{3x3}, X_0 = I, \vec{L} = \begin{bmatrix} 1 & 0 & 0\end{bmatrix})$ Så får vi dette resultatet ved siste iterasjon (altså t = 2s):\newline\newline
 
 $$

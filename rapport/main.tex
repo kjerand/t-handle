@@ -5,14 +5,17 @@
 \usepackage{subfiles}
 \usepackage{graphicx}
 \usepackage{nomencl}
+\usepackage{caption}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 
 \newcommand{\nomunit}[1]{%
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\renewcommand{\figurename}{Figur}
 
 \setcounter{secnumdepth}{4}
 
 \renewcommand*\contentsname{Innholdsfortegnelse}
-\renewcommand\refname{Referanser}
+\renewcommand\refname{}
 
 \begin{document}
 \subfile{rapport/forside}
@@ -27,6 +30,7 @@
 \subfile{rapport/teori/rotasjon}
 \newpage
 \subfile{rapport/teori/numerikk}
+\newpage
 \section{Resultat}
 \subfile{rapport/resultat/oppgave1}
 \subfile{rapport/resultat/oppgave2}
@@ -39,7 +43,11 @@
 \newpage
 \subfile{rapport/konklusjon}
 \newpage
-
+\subfile{rapport/vedlegg}
+\newpage
+\subfile{rapport/erklaering}
+\newpage
+\section{Referanser}
 \bibliography{rapport/.bib} 
 \bibliographystyle{ieeetr}
 \end{document}  

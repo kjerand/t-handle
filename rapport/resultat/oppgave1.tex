@@ -2,11 +2,11 @@
 \subsubsection{Deloppgave a}
 Første oppgave går ut på å implementere funksjonen til ligning 21, nemlig: 
 \begin{equation}
-    exp(h\Omega) = \textit{I} + (1 - \cos(\omega h))\frac{\Omega^2}{\omega^2}+\sin(\omega h)\frac{\Omega}{\omega}
+    \exp(h\Omega) = \textit{I} + (1 - \cos(\omega h))\frac{\Omega^2}{\omega^2}+\sin(\omega h)\frac{\Omega}{\omega}
 \end{equation}
-Funksjonen skal altså ta inn steglengden h, og $\Omega$, en matrise som inneholder de ulike vinkelhastighetene. Dette ble implementert i python ved hjelp av numpy i [[[SKRIV INN HVA KODEFILEN HETER HER]]]. For å verifisere at funksjonen fungere som forventet så sjekker vi egenskapen at outputmatrisen X har egenskapen $X^T X = I$. Ettersom beregningene skjer numerisk på en datamaskin så testet vi om alle elementene i matrisen var mindre enn $10^{-4}$ unna den forventete verdien. Med testene bestått for verdien av flere ulike størrelsesordener kan vi være ganske sikre på at den er implementert riktig.
+Funksjonen skal altså ta inn steglengden h, og $\Omega$, en matrise som inneholder de ulike vinkelhastighetene. Dette ble implementert i python ved hjelp av numpy i \ref{kode:oppgave1}. For å verifisere at funksjonen fungere som forventet så sjekker vi egenskapen at outputmatrisen X har egenskapen $X^T X = I$. Ettersom beregningene skjer numerisk på en datamaskin så testet vi om alle elementene i matrisen var mindre enn $10^{-4}$ unna den forventete verdien. Med testene bestått for verdien av flere ulike størrelsesordener kan vi være ganske sikre på at den er implementert riktig.
 \subsubsection{Deloppgave b}
-Neste deloppgave er å implementere funksjonen som beregner energien til et roterende legeme som har et gitt treghetsmoment og vinkelhastighetsvektor $\Vec{\omega}$. Dette ble implementert i python ved å løse følgende ligning for $K$, som er kinetisk energi.
+Neste deloppgave er å implementere funksjonen som beregner energien til et roterende legeme som har et gitt treghetsmoment og vinkelhastighetsvektor $\Vec{\omega}$. Dette ble implementert i Python ved å løse følgende ligning for $K$, som er kinetisk energi.
 \begin{equation}
     \textit{K} = \frac{1}{2}\vec{\textit{L}}\cdot \vec{\omega}
 \end{equation}
@@ -15,7 +15,7 @@ Vi beregner dreieimpulsen $\vec{L}$ på følgende måte
 \label{eq:dreieimpuls}
     \vec{L}=XI\vec{\omega}
 \end{equation}
-Implementasjonen [[[LIGGER PÅ DENNE PLASSEN SOM VI MÅ BESKRIVE SEINERE]]]
+Implementasjonen for dette ligger også i \ref{kode:oppgave1}
 \subsubsection{Deloppgave c}
 I siste deloppgave skal treghetsmomentet til nøkkelen beregnes, her skrev vi en funksjon som løser de følgende likningene gitt massene M, lengdene L, radiusene R til de to sylinderene som utgjør T-nøkkelen. \begin{equation}
     I_{xx}= \frac{M_1{R_1}^2}{4} + \frac{M_1{L_1}^2}{12} + \frac{M_2{R_2}^2}{2}
@@ -27,7 +27,7 @@ I siste deloppgave skal treghetsmomentet til nøkkelen beregnes, her skrev vi en
     I_{zz}= M_1{R_1}^2 + \frac{M_2{L_2}^2}{4} + \frac{M_1{R_1}^2}{4} + \frac{M_1{L_1}^2}{12} + \frac{M_2{R_2}^2}{4} + \frac{M_2{L_2}^2}{12}
 \end{equation} 
 \newline
-de resterende elementene i matrisen er 0. Selve koden som gjør beregninger å finne i [[[HALLA KOMPIS, HER SKAL DU SKRRRRRRRIVE HVOR VI KAN LESE NEVNTE KODE]]]. Når koden kjøres får man følgende matrise som beskriver treghetsmomentet: \newline
+de resterende elementene i matrisen er 0. Selve koden som gjør beregninger er å finne i \ref{kode:oppgave1}. Når koden kjøres får man følgende matrise som beskriver treghetsmomentet: \newline
 \begin{equation}
 I = 
 \begin{bmatrix}
