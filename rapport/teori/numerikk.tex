@@ -20,13 +20,12 @@ I forbindelse med stive legemer ønsker man å bruke en variant av Eulers metode
 \end{equation}
 Her angis startverdien $W_0=X_0$ som startposisjonen til det stive legeme, mens $W_iexp(h\Omega)$ returner en matrise som angir den nye posisjonen $W_{i+1}$.
 
-
 \subsubsection{Midtpunkts-metoden}
 \begin{center}
     \includegraphics{rapport/teori/bilder/midpoint.PNG}
 \end{center}
 Midtpunkts-metoden tar utgangspunkt i Eulers metode. Forskjellen er at i midtpunkts-metoden finner man først midtpunktet mellom stegene, så beregner man tangenten til neste steg basert på midtpunktet. Det er illustrert overfor \cite{MATEMATIKK:1}.\newline\newline
-Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode.
+Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode \cite{MATEMATIKK:1}.
 
 \begin{equation}
 \begin{aligned}
@@ -48,7 +47,7 @@ Her ønsker vi også at $w_i$ skal være ortogonal, så vi tar utgangspunkt i de
     \includegraphics{rapport/teori/bilder/trapezoid.PNG}
 \end{center}
 Trapes-metoden tar også utgangspunkt i Eulers metode. Forskjellen her er at man regner ut tangenten i $w_i$, samt i $w_{i+1}$. Ved Trapes-metoden bruker vi da gjennomsnittet av disse tangentene. Dette illustreres i figuren overfor \cite{MATEMATIKK:1}.\newline\newline
-Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode. 
+Kan da løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode \cite{MATEMATIKK:1}. 
 \begin{equation}
 \begin{aligned}
     w_0&=y(t_0)\\
@@ -66,7 +65,7 @@ For å finne neste steg for vår modell bruker vi følgende metode for hvert ste
 
 \subsubsection{Runge-Kutta RK4}
 Runge-Kutta RK4 er en fjerde ordens Runge-Kutta, i motsetning til Midtpunkts-metoden og Trapes-metoden som er andre ordens metoder. RK4 er derfor betydelig mer nøyaktige enn de andre. \newline\newline
-Kan løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode. 
+Kan løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode \cite{MATEMATIKK:1}. 
 \begin{equation}
 \begin{aligned}
     s_1&=f(t_i, w_i)\\
@@ -90,7 +89,7 @@ Implementasjonen av Runge-Kutta RK4 for vår modell vil være følgende.
 
 \subsubsection{Runge-Kutta-Fehlberg RKF45}
 Runge-Kutta-Fehlberg er enda en fjerde ordens Runge-Kutta metode, men den er enda mer nøyaktig enn RK4. Det som tillater RKF45 å være mer nøyaktig er at man gjør en ekstra beregning som tillater oss å beregne et feilestimat av femte orden. Ved hjelp av dette kan man bestemme om man bruker riktig steglengde $h$.\newline\newline
-Ved å bruke RKF45 kan man løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode. 
+Ved å bruke RKF45 kan man løse en likning $y' = f(t, y)$ ved å finne $w_i \approx y(t_i)$ gjennom å bruke følgende metode \cite{MATEMATIKK:1}. 
 \begin{equation}
 \begin{aligned}
     s_1&=f(t_i, w_i)\\
