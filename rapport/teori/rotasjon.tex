@@ -3,11 +3,15 @@
 \subsection{Rotasjon av stive legemer}
 
 \subsubsection{Rotasjonell kinematikk}
-Når et stivt legeme roteres rundt en stasjonær akse (vanligvis $z$-aksen), så er posisjonen til det stive legemet beskrevet av vinkelen $\theta.$\newline\newline
+Når et stivt legeme roteres rundt en stasjonær akse, så er posisjonen til det stive legemet beskrevet av vinkelen $\theta.$\newline\newline
+Her ser vi et eksempel på et stivt legeme som roterer rundt en stasjonær akse \cite{FYSIKK:1}. Som vi kan se er legemets posisjon beskrevet av $\theta.$
+\begin{figure}[!ht]
 \begin{center}
-\includegraphics{rapport/teori/bilder/theta.png}\newline\newline
+\includegraphics{rapport/teori/bilder/theta.png}
+\caption{Rotasjon av et stivt legeme}
+\label{fig:rotasjon}
 \end{center}
-Her ser vi et eksempel på et stivt legeme som roterer rundt en stasjonær akse \cite{FYSIKK:1}. Som vi kan se er legemets posisjon beskrevet av $\theta.$\newline\newline
+\end{figure}\newline\newline
 Vinkelfarten $\omega_z$ er den tidsderiverte av $\theta$, og vinkelakselerasjonen $\alpha_z$ er den tidsderiverte av $\omega_z$, eller den andrederiverte av $\theta.$
 \begin{equation}
 \label{eqn:first}
@@ -46,15 +50,19 @@ For både lineær kinematikk og rotasjonell kinematikk gjelder følgende:\newlin
 \begin{equation}
     a_{\text{rad}}=\frac{v^2}{r}=\omega^2r
 \end{equation}
-\begin{center}
-\includegraphics{rapport/teori/bilder/tang.png}\newline
-\end{center}
 Her er $a_\text{rad}$ og $a_\text{rad}$ henholdsvis den radielle komponenten og den tangentielle komponenten til akseleasjonsvektoren \cite{FYSIKK:1}
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics{rapport/teori/bilder/tang.png}
+\caption{Her ser vi både tangentiell og radiell akselerasjon}
+\label{fig:rotasjon}
+\end{center}
+\end{figure}
 
 \subsubsection{Treghetsmoment og rotasjonell kinetisk energi}
-Treghetsmomentet $I$ til et legeme om en gitt akse er et mål på legemets rotasjonelle treget: Jo større verdien til $I$ er, jo vanskeligere er det å endre tilstanden til rotasjonen. Treghetsmomentet kan bli skrevet som en sum over massen til partiklene, $m_i$, som utgjør hele legemet. Hver partikkel har en distanse $r_i$ fra aksen.
+Treghetsmomentet $I$ til et legeme om en gitt akse er et mål på legemets rotasjonelle treghet: Jo større verdien til $I$ er, jo vanskeligere er det å endre tilstanden til rotasjonen. Treghetsmomentet kan bli skrevet som en sum over massen til partiklene, $m_i$, som utgjør hele legemet. Hver partikkel har en distanse $r_i$ fra aksen.
 \begin{equation}
-    I=m_1r_1^2+m_2r_2^2+\dots=\sum_i{m_i_r_i^2}
+    I=m_1r_1^2+m_2r_2^2+\dots=\sum_i{m_{i}r_i^2}
 \end{equation}
 Den rotasjonelle kinetiske energien til et stivt legeme som roterer om en akse avhenger av vinkelhastigheten $\omega$ og treghetsmomentet $I$ for rotasjonsaksen
 \begin{equation}
@@ -62,9 +70,13 @@ Den rotasjonelle kinetiske energien til et stivt legeme som roterer om en akse a
 \end{equation}
 \subsubsection{Beregning av treghetsmoment}
 Parallell akse teoremet beskriver forholdet mellom treghetsmomentet til et stivt legeme med masse $M$ om to parallelle akser. Den ene aksen er aksen gjennom massesenteret, og den andre aksen er aksen en distanse $d$ fra den første aksen
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics{rapport/teori/bilder/parallell.png}
+\caption{Rotasjon av et stivt legeme om to parallelle akser}
+\label{fig:rotasjon}
 \end{center}
+\end{figure}\newline\newline
 Her ser vi et stivt legeme med masse $M$, hvor den ene aksen går gjennom massesenteret. Her er treghetsmomentet $I_\text{cm}$. Den andre aksen ligger en distanse $d$ fra første akse, og her er treghetsmomentet $I_p.$\cite{FYSIKK:1} Parallell akse teoremet gir oss at
 \begin{equation}
     I_p=I_\text{cm}+Md^2
