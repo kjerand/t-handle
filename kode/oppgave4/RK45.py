@@ -115,7 +115,7 @@ def get_new_h(h, w_i, e_i):
 if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
     h = get_h()
-    interval = [0, 50]
+    interval = [0, 2]
     n = 50000
     L = np.array([1, 0, 0], dtype=np.double)
     I = np.identity(3, dtype=np.double)

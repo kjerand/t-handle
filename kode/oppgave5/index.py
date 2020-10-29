@@ -47,11 +47,11 @@ if __name__ == "__main__":
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval, drop_energy=True)
+    W_a, t_a, energy_a, E = oppgave5(X_0, omega_0_a, n, interval)
     print(W_a["rk45"][-1])
 
     omega_0_b = np.array([[0, 1, 0.05]], dtype=np.double).T
-    W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval, drop_energy=True)
+    W_b, t_b, energy_b, E = oppgave5(X_0, omega_0_b, n, interval)
     print(W_b["rk45"][-1])
 
     omega_0_c = np.array([[0.05, 0.0, 1.0]], dtype=np.double).T

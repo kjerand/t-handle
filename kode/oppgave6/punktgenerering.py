@@ -42,11 +42,11 @@ def load_data(filename):
 
 if __name__ == "__main__":
     n = 20000
-    interval = [0.0, 50.0]
+    interval = [0.0, 100.0]
     X_0 = np.identity(3, dtype=np.double)
 
     omega_0_a = np.array([[1, 0.05, 0]], dtype=np.double).T
-    save_data(X_0, omega_0_a, n, interval, "oppgavea.npy")
+    save_data(X_0, omega_0_a, n, interval, "oppgavea.npy", drop_energy=True)
 
     #omega_0_b = np.array([[0, 1.0, 0.05]], dtype=np.double).T
     #save_data(X_0, omega_0_b, n, interval, "oppgaveb.npy")
